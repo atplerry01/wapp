@@ -1,0 +1,156 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<div class="main-content">
+
+
+
+
+  <!-- account details section -->
+  <div class="card-box-shadow report-header alignmiddle">
+    Daily Movement
+    <div class="accesslevelLayout" *ngIf="myAccess">
+      <span [class]="myAccess?.myclass">
+        <i class="fas fa-circle"></i>
+        <span class="name">{{myAccess?.name}}</span>
+        <span class="desc">{{myAccess?.description}}</span>
+      </span>
+    </div>
+  </div>
+
+
+  <!-- Display  report on table mode -->
+  <div class="card-box-shadow report-content">
+
+    <!-- *ngIf="channelMovement?.length" -->
+    <div class="card-box-shadow" *ngIf="channelMovement?.length">
+      <div class="table-responsive-vertical shadow-z-1 form-table">
+        <table id="table" class="table table-hover table-mc-light-blue" [@fadeAnimation]="channelMovement?.length">
+          <thead>
+
+              <tr>
+                  <th  class="noborder"></th>
+                  <th colspan="4" class="align-text-center">
+                    PREVIOUS ({{channelMovement[0]?.P_ITranDate | date:'dd-MMM-yyyy'}})
+                  </th>
+    
+                  <th colspan="4" class="align-text-center">
+                    CURRENT ({{channelMovement[0]?.ITranDate | date:'dd-MMM-yyyy'}})
+                  </th>
+                </tr>
+
+
+            <tr>
+              <th class="noborder"></th>
+              <th colspan="2"  class="align-text-center">
+                INWARD
+              </th>
+
+              <th colspan="2" class="align-text-center">
+                OUTWARD
+              </th>
+
+              <th colspan="2" class="align-text-center">
+                INWARD
+              </th>
+
+              <th colspan="2" class="align-text-center">
+                OUTWARD
+              </th>
+            </tr>
+
+
+            <tr>
+              <th class="noborder">Channel</th>
+              <th  class="align-text-right">
+                Count
+              </th>
+              <th class="align-text-right">
+                Volume
+              </th>
+              <th class="align-text-right">
+                Count
+              </th>
+              <th class="align-text-right">
+                Volume
+              </th>
+              <th class="align-text-right">
+                Count
+              </th>
+              <th class="align-text-right">
+                Volume
+              </th>
+              <th class="align-text-right">
+                Count
+              </th>
+              <th class="align-text-right">
+                Volume
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let rep of channelMovement; let i=index">
+
+              <td data-title="Channel">{{rep?.P_IChannel}}</td>
+
+              <td  data-title="Previous Inward Count" class="align-text-right">
+                {{rep?.P_OTotalCount| currency:' ':'symbol':'0.0-2'}}
+              </td>
+              <td data-title="Previous Inward Vol." class="align-text-right">
+                {{rep?.P_OTotalAmount | currency:' ':'symbol':'4.2-2'}}
+              </td>
+              <td  data-title="Previous Outward Count" class="align-text-right">
+                {{rep?.P_ITotalCount| currency:' ':'symbol':'0.0-2'}}
+              </td>
+              <td  data-title="Previous Outward Vol." class="align-text-right">
+                {{rep?.P_ITotalAmount | currency:' ':'symbol':'4.2-2'}}
+              </td>
+              <td  data-title="Curent Inward Count" class="align-text-right">
+                {{rep?.OTotalCount| currency:' ':'symbol':'0.0-2'}}
+              </td>
+              <td  data-title="Curent Inward Vol." class="align-text-right">
+                {{rep?.OTotalAmount | currency:' ':'symbol':'4.2-2'}}
+              </td>
+              <td  data-title="Curent Outward Count" class="align-text-right">
+                {{rep?.ITotalCount| currency:' ':'symbol':'0.0-2'}}
+              </td>
+              <td  data-title="Curent Outward Vol." class="align-text-right">
+                {{rep?.ITotalAmount | currency:' ':'symbol':'4.2-2'}}
+              </td>
+
+              <!-- </tr>
+
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </td>
+            </tr> -->
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+  <!-- Display  report on table mode end here -->
+
+
+  <div class="spinner" *ngIf="isInprogress"></div>
+  <div class="card-box-shadow alignmiddle notfound" *ngIf="!isInprogress && isSearchedBefore && !channelMovement?.length">
+    Report not available for this search criteria!
+  </div>
+  <!-- account detail section end here -->
+
+</div>
+
+
+<app-footer></app-footer>

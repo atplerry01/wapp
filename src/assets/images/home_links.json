@@ -1,0 +1,37 @@
+[{
+    "name": "Purple Works",
+    "url": "https://purpleworks.wemabank.com/Runtime/Runtime/Form/K2+Workdesk/?",
+    "imgurl": "collect.png", 
+    "order":1
+  },
+  {
+    "name": "EBILLS PAY & NIP BRANCH",
+    "url": "http://172.27.4.22/NIPApp/",
+    "imgurl": "branch.png",
+    "order":2
+  },
+  {
+    "name": "EMPLOYEE SELF SERVICE",
+    "url": "http://172.27.4.86/XceedSelfServ/Essstartpage.aspx",
+    "imgurl": "self.png",
+    "order":3
+  },
+  {
+    "name": "AUTO PAY",
+    "url": "https://172.25.15.11/autopay.dc/Login.aspx?c=ISW",
+    "imgurl": "auto.png",
+    "order":4
+  },
+  {
+    "name": "WEMA COLLECT",
+    "url": "http://172.27.4.22/WemaCollect/",
+    "imgurl": "remote.png",
+    "order":5
+  },
+  {
+    "name": "CORPORATE CPS",
+    "url": "https://wema-hq-corpcps.wemabank.local/corpcps/",
+    "imgurl": "corporate.png",
+    "order":6
+  }
+]

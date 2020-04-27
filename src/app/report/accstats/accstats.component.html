@@ -1,0 +1,215 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<div class="main-content">
+
+
+
+
+  <!-- account details section -->
+  <div class="card-box-shadow report-header alignmiddle">
+    <!-- <div class="reportTypeLayout" *ngIf="accountStatsByProduct?.length">
+      <i [class.selected]="showTable" class="fas fa-table" (click)="selectReportLayoutType('t')" data-tool-tip="Show report on Table mode"></i>
+      <i [class.selected]="!showTable" class="fas fa-chart-bar" (click)="selectReportLayoutType('c')" data-tool-tip="Show report on Chart mode"></i>
+    </div> -->
+
+    Account Statistics
+    <div class="accesslevelLayout" *ngIf="myAccess">
+      <span [class]="myAccess?.myclass">
+        <i class="fas fa-circle"></i>
+        <span class="name">{{myAccess?.name}}</span>
+        <span class="desc">{{myAccess?.description}}</span>
+      </span>
+    </div>
+  </div>
+
+
+  <!-- Display  report on table mode -->
+  <div class="card-box-shadow report-content" [hidden]="!showTable">
+
+    <div class="card-box-shadow" *ngIf="accountStatsByProduct?.length">
+      <div class="table-responsive-vertical shadow-z-1 form-table">
+        <table id="table" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th class="align-text-right">Total #Accounts</th>
+              <th class="align-text-right">Total #Dormant/Inactive</th>
+              <th class="align-text-right">Dormancy/Inactive Ratio(%)</th>
+              <th class="align-text-right">Total Volume</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let rep of accountStatsByProduct; let i=index" [hidden]="selectedPronductIndex!==null && selectedPronductIndex!==i">
+              <td data-title="#">{{i+1}}</td>
+              <td data-title="Product" class="td-link" data-tool-tip="Click to drilldown to regions" (click)="getAccountStatiticsByRegion(i, rep?.ProductCode)">{{rep?.ProductName}}</td>
+              <td data-title="Total #Accounts" class="align-text-right">{{rep?.Total | currency:' ':'symbol':'0.0-2'}}</td>
+              <td data-title="Total #Dormant/Inactive" class="align-text-right">{{rep?.TotalDormant | currency:' ':'symbol':'0.0-2'}}</td>
+              <!-- <td data-title="Dormancy/Inactive Ratio(%)" class="align-text-right">{{rep?.DormancyRatio}}</td> -->
+              <td data-title="Dormancy/Inactive Ratio(%)" class="align-text-right">{{ ((rep?.TotalDormant/totalDormant) * 100) | currency:' ':'symbol':'0.0-2'}}</td>
+              <td data-title="Total Volume." class="align-text-right">{{rep?.DVolume| currency:' '}}</td>
+            </tr>
+
+            <tr class="tb-footer" [hidden]="selectedPronductIndex!==null">
+              <td data-title=""></td>
+              <td data-title=""></td>
+              <td data-title="Total #Accounts" class="align-text-right">{{totalAccount | currency:' ':'symbol':'4.0-2'}}</td>
+              <td data-title="Total #Dormant/Inactive" class="align-text-right">{{totalDormant | currency:' ':'symbol':'4.0-2'}}</td>
+              <td data-title="Dormancy/Inactive Ratio(%)" class="align-text-right">100</td>
+              <td data-title="Total Volume." class="align-text-right">{{totalVolume | currency:' ':'symbol':'4.2-2'}}</td>
+            </tr>
+
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!-- Drilldown to Regions -->
+    <div class="card-box-shadow regionDrilldownContainer" *ngIf="accountStatsByRegion?.length">
+      <i class="fas fa-times closeSection" (click)="close()"></i>
+
+      <div class="table-responsive-vertical shadow-z-1 form-table">
+        <table id="table" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Region</th>
+              <th class="align-text-right">Total #</th>
+              <th class="align-text-right">Total (%)</th>
+              <th class="align-text-right">Total Volume</th>
+              <th class="align-text-right">Volume (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let rep of accountStatsByRegion; let i=index" [class.selectedRegion]="selectedRegionIndex===i">
+              <td data-title="#">{{i+1}}</td>
+              <td data-title="Region" [class.td-link]="selectedRegionIndex!==i" data-tool-tip="Click to drilldown to Zones" (click)="getAccountStatiticsByZones(i, rep?.RegionCode)">{{rep?.RegionName}}</td>
+              <td data-title="Total #" class="align-text-right">{{rep?.Total | currency:' '}}</td>
+              <td data-title="Total (%)" class="align-text-right">{{ ((rep?.Total/totalAccount_region) * 100) | currency:' '}}</td>
+              <td data-title="Total Volume." class="align-text-right">{{rep?.DVolume| currency:' '}}</td>
+              <td data-title="Volume (%)" class="align-text-right">{{ ((rep?.DVolume/totalVolume_region) * 100) | currency:' '}}</td>
+            </tr>
+
+            <tr class="tb-footer">
+              <td data-title=""></td>
+              <td data-title=""></td>
+              <td data-title="Total #" class="align-text-right">{{totalAccount_region | currency:' '}}</td>
+              <td data-title=""></td>
+              <td data-title="Total Volume." class="align-text-right">{{totalVolume_region | currency:' '}}</td>
+              <td data-title=""></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!-- Drilldown to Zones -->
+    <div class="card-box-shadow zoneDrilldownContainer" *ngIf="accountStatsByZone?.length">
+      <div class="table-responsive-vertical shadow-z-1 form-table">
+        <table id="table" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Zone</th>
+              <th>Branch</th>
+              <th class="align-text-right">Total #Accounts</th>
+              <th class="align-text-right">Total (%)</th>
+              <th class="align-text-right">Total Dormancy/Inactive</th>
+              <th class="align-text-right">Dormancy/Inactive (%)</th>
+              <th class="align-text-right">Total Volume</th>
+              <th class="align-text-right">Volume (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let rep of accountStatsByZone; let i=index">
+              {{checkSameZone(i, rep?.ZoneName)}}
+              <td data-title="#">{{i+1}}</td>
+              <td data-title="Zone">{{ !isSameZoneName? rep?.ZoneName : ''}}</td>
+              <td data-title="Branch">{{rep?.BranchName}}</td>
+              <td data-title="Total #" class="align-text-right">{{rep?.DTotal | currency:' '}}</td>
+              <td data-title="Total (%)" class="align-text-right">{{ ((rep?.DTotal/totalAccount_zone) * 100) | currency:' '}}</td>
+
+              <td data-title="Total Dormancy/Inactive" class="align-text-right">{{rep?.Dormancy | currency:' '}}</td>
+              <td data-title="Dormancy/Inactive (%)" class="align-text-right">{{ ((rep?.Dormancy/dormancy_zone) * 100) | currency:' '}}</td>
+
+              <td data-title="Total Volume." class="align-text-right">{{rep?.DVolume| currency:' '}}</td>
+              <td data-title="Volume (%)" class="align-text-right">{{ ((rep?.DVolume/totalVolume_zone) * 100) | currency:' '}}</td>
+            </tr>
+
+            <tr class="tb-footer">
+              <td data-title=""></td>
+              <td data-title=""></td>
+              <td data-title=""></td>
+              <td data-title="Total #" class="align-text-right">{{totalAccount_zone | currency:' '}}</td>
+              <td data-title=""></td>
+              <td data-title="Total Volume." class="align-text-right">{{dormancy_zone | currency:' '}}</td>
+              <td data-title=""></td>
+              <td data-title="Total Volume." class="align-text-right">{{totalVolume_zone | currency:' '}}</td>
+              <td data-title=""></td>
+            </tr>
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+  </div>
+  <!-- Display  report on table mode end here -->
+
+
+  <!-- Display  report on Chart mode -->
+  <div class="card-box-shadow report-content" *ngIf="!showTable">
+
+    <div class="card-box-shadow" *ngIf="accountStatsByProduct?.length">
+      <div [chart]="productChart"></div>
+    </div>
+
+
+    <!-- Drilldown to Regions -->
+
+      <div class="card-box-shadow regionDrilldownContainer" *ngIf="accountStatsByRegionGraph?.length">
+        <i class="fas fa-times closeSection" (click)="close()"></i>
+        <div [chart]="regionChart"></div>
+
+      </div>
+
+    <!-- Drilldown to Zones -->
+      <div class="card-box-shadow zoneDrilldownContainer" *ngIf="accountStatsByZoneGraph?.length">
+        <div [chart]="zoneChart"></div>
+      </div>
+
+<!-- Drilldown to Zones -->
+  <div class="card-box-shadow branchDrilldownContainer" *ngIf="accountStatsByBranchesGraph?.length">
+    <div [chart]="branchChart"></div>
+  </div>
+
+
+  </div>
+  <!-- Display  report on Chart mode end here -->
+
+
+  <div class="spinner" *ngIf="isInprogress"></div>
+  <div class="card-box-shadow alignmiddle notfound" *ngIf="!isInprogress && isSearchedBefore && !accountStatsByProduct?.length">
+    Report not available for this search criteria!
+  </div>
+  <!-- account detail section end here -->
+
+</div>
+
+
+<app-footer></app-footer>
+<div #bottomtag></div>

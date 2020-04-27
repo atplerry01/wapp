@@ -1,0 +1,161 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<app-report-template 
+  [isInprogress]="isInprogress" 
+  [showNotFoundMsg]="showNotFoundMsg" 
+  [showSearch]="true" 
+  [searchText1_Placeholder]="'File Name'"
+  (searchTriggered)="onSearch($event)" 
+  [isRowSelectable]="true"
+  (rowSelectionTriggered)="onRowSelected($event)"
+  [showPagination]="true" 
+  [showPerPage]="true" 
+
+  [page]="page" 
+  [total_pages]="total_pages"  
+  [totalRecords] = "totalRecords"
+  [moduleName]="'HCM-FileArchive Supervisor'" 
+  [reportTitle]="'File Archive Manager'"
+  [reportHeaders]="reportHeaders" 
+  [reportData]="reportData" 
+  [showEdit]="true"
+  (editRowTriggered)="onMenuEdit($event)" 
+  [showDelete]="true"
+  (deleteRowTriggered)="onMenuDelete($event)"
+  >
+</app-report-template>
+
+<div class="pop" *ngIf="showForm">
+  <div class="modal">
+
+    <div class="modal__inner" style="width: 75%">
+
+      <div *ngIf="currentModalTab === 'archiveDetail'">
+
+        <div class="form-header" style="font-size: 18px">{{formTitle}}xx</div>
+
+        <div>
+
+          <app-report-template [reportTitle]="'File Archive Details'" [isRowSelectable]="true"
+            [isInprogress]="isInprogress" [showNotFoundMsg]="showNotFoundMsg" [moduleName]="'RC-Loan Tele Collector'"
+            [reportHeaders]="archiveLogHeader" [reportData]="archiveLogs">
+          </app-report-template>
+        </div>
+        <div class="myform">
+          <div class="link-display"><span (click)="toggleBoxUpdate()">Update Box</span></div>
+          <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+            [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+          </app-form-template>
+        </div>
+      </div>
+
+      <div *ngIf="currentModalTab === 'archiveEdit'">
+        <div>
+          <h3 class="title">{{updateTitle}}</h3>
+          <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+            [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+          </app-form-template>
+
+        </div>
+      </div>
+
+      <div *ngIf="currentModalTab === 'loanDetail'">
+
+        <div class="form-header" style="font-size: 18px">{{formTitle}}</div>
+
+        <div class="myform">
+          <div class="spinner" *ngIf="isInprogress"></div>
+
+          <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+            [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+          </app-form-template>
+
+        </div>
+      </div>
+
+
+      <div *ngIf="currentModalTab === 'callHistory'">
+
+        <div>
+          <app-report-template [reportTitle]="'Call Center History'" [isRowSelectable]="true"
+            [isInprogress]="isInprogress" [showNotFoundMsg]="showNotFoundMsg" [moduleName]="'RC-Loan Tele Collector'"
+            [reportHeaders]="callCenterHeader" [reportData]="caseCallHistory">
+          </app-report-template>
+        </div>
+
+        <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+          [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+        </app-form-template>
+      </div>
+
+      <div *ngIf="currentModalTab === 'customerDetail'">
+
+        <ul *ngIf="showToggleButton" style="margin-top: 10px" class="submenu" (click)="onCustomerDetailToggle()">
+          <li style="background-color:purple; color: #fff">
+            <span style="color: #fff">Toggle View</span></li>
+        </ul>
+
+        <h3 style="color: #000">Customer Account Details</h3>
+
+        <div *ngIf="showCustomerDetailLists">
+
+          <table style="width: 100%">
+            <thead>
+              <tr>
+                <th>Customer Name</th>
+                <th>Branch Name</th>
+                <th>Scheme Desc</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>{{selectedModel.OPER_ACCT_NAME}}</td>
+              <td>{{selectedModel.OPER_ACCT_BRN_NAME}}</td>
+              <td>{{selectedModel.SCHM_CODE}}</td>
+            </tr>
+          </table>
+
+          <br />
+          <h3 style="color: #000">Account Details</h3>
+          <table style="width: 100%">
+            <thead>
+              <tr>
+                <th>Cif Id</th>
+                <th>Account Name</th>
+                <th>Account Number</th>
+                <th>Operative Balance</th>
+                <th>Loan Balance</th>
+              </tr>
+            </thead>
+            <tr>
+              <td>{{selectedModel.CIF_ID}}</td>
+              <td>{{selectedModel.OPER_ACCT_NAME}}</td>
+              <td>{{selectedModel.OPER_ACCT_NO}}</td>
+              <td>{{selectedModel.OPER_ACCT_BAL}}</td>
+              <td>{{selectedModel.LOAN_ACCT_BAL}}</td>
+            </tr>
+          </table>
+
+          <h3 style="color: #000">Other Customer Details</h3>
+
+          <div>
+            <app-report-template [reportTitle]="'Customer Contact Details'" [isRowSelectable]="true"
+              [isInprogress]="isInprogress" [showAdd]="true" (AddTriggered)="onAddCustomerDetails()"
+              [showNotFoundMsg]="showNotFoundMsg" [moduleName]="'RC-Loan Tele Collector'"
+              [reportHeaders]="contactDetailHeader" [reportData]="caseCustomerDetail">
+            </app-report-template>
+          </div>
+
+        </div>
+
+        <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+          [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+        </app-form-template>
+
+      </div>
+
+    </div>
+  </div>
+</div>

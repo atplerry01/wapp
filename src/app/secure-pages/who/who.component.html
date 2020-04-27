@@ -1,0 +1,105 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<!-- page content start here ... -->
+<div class="card-box-shadow title" (click)="showModel=true;" *ngIf="!isInprogress && isSearchedBefore">
+     Selected area &nbsp; <i *ngIf="selectedRegion?.region"> >>&nbsp;{{selectedRegion?.region}}</i>&nbsp; <i  *ngIf="selectedZone?.name"> >>&nbsp;{{selectedZone.name}}</i>&nbsp; <i  *ngIf="selectedBranch?.branch"> >>&nbsp;{{selectedBranch?.branch}}</i> 
+</div>
+
+
+<div class="who">
+    <div class="whoIsWho-header">
+        <i class="fa fa-search search-icon"></i>
+        <input type="text" class="form-control" placeholder="Enter any part of name to search..." #searchTerm (keyup)="searchEmp(searchTerm.value)"
+        />
+        <i class="fa fa-spinner fa-spin ani-spin" *ngIf="isInprogress"></i>
+    </div>
+    <div class="table-responsive-vertical shadow-z-1 form-table" *ngIf="employees?.length">
+        <table id="table" class="table table-hover table-mc-light-blue">
+            <thead>
+                <tr>
+                    <th>Branch</th>
+                    <th>Grade</th>
+                    <th>#</th>
+                    <th>Emp. FullName</th>
+                    <th>Emp.No</th>
+                    <th>Dept</th>
+                    <th>Job Title</th>
+                    <th>GSM No</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let emp of employees; let i=index;">
+                    {{checkSameGrade(i, emp?.Grade)}}
+                    <td data-title="Branch">{{emp?.BranchName}}</td>
+                    <td data-title="Grade">{{ !isSameGrade? emp?.Grade : ''}}</td>
+                    <td data-title="#" class="redColor">{{ holdCountVal }}</td>
+                    <td data-title="Emp. FullName">{{emp?.EmployeeName}}</td>
+                    <td data-title="Emp.No">{{emp?.EmployeeNumber}}</td>
+                    <td data-title="Dept">{{emp?.Department}}</td>
+                    <td data-title="Job Title">{{emp?.JobTitle}}</td>
+                    <td data-title="GSM No">{{emp?.GSM}}</td>
+                </tr>
+                <tr class="tb-footer">
+                        <td data-title=""></td>
+                        <td data-title=""></td>
+                        <td data-title="#" class="redColor">{{ employees?.length }}</td>
+                        <td data-title=""></td>
+                        <td data-title=""></td>
+                        <td data-title=""></td>
+                        <td data-title=""></td>
+                        <td data-title=""></td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card-box-shadow alignmiddle notfound bg" *ngIf="!isInprogress && isSearchedBefore && !employees?.length">
+    No user found!
+  </div>
+
+<div class="spinner" *ngIf="isFirstLoad"></div>
+
+<!-- page content end here... -->
+
+
+<app-footer></app-footer>
+
+
+
+
+<!-- model box section -->
+<div class="pop" *ngIf="showModel">
+    <div class="modal">
+        <div class="modal__inner">
+
+            <!-- content start here -->
+            <div class="row dialogcontent">
+                <div class="col-xs-4 card-box-shadow">
+                    <!-- <a class="header" (click)="load('','','','', true)">Bankwide (ALL)</a> -->
+                    <a  (click)="load('','','','', true)">0 - Bankwide (ALL)</a>
+                    <a [class.selected]="selectedRegion?.regioncode===reg?.regioncode" (click)="loadRegionZones(reg)" *ngFor="let reg of regions; let i=index;">{{i+1}} - {{reg?.region}}</a>
+                </div>
+                <div class="col-xs-4 card-box-shadow" *ngIf="selectedZones?.length">
+                    <!-- <a class="header" (click)="load('',selectedRegion?.regioncode,'','', true)">{{selectedRegion?.region}}</a> -->
+                    <a (click)="load('',selectedRegion?.regioncode,'','', true)">0 - {{selectedRegion?.region}}</a>
+                    <a [class.selected]="selectedZone?.zonecode===zn?.zonecode" (click)="loadRegionBranches(zn)" *ngFor="let zn of selectedZones; let i=index;">{{i+1}} - {{zn?.name}}</a>
+
+                </div>
+                <div class="col-xs-4 card-box-shadow" *ngIf="selectedBranches?.length">
+                    <!-- <a class="header" (click)="load('', selectedRegion?.regioncode,selectedZone?.zonecode,'', true)">{{selectedZone?.name}}</a> -->
+                    <a (click)="load('', selectedRegion?.regioncode,selectedZone?.zonecode,'', true)">0 - {{selectedZone?.name}}</a>
+                    <a [class.selected]="selectedBranch?.branch===brn?.branch" (click)="load('', selectedRegion?.regioncode,selectedZone?.zonecode,brn, true)" *ngFor="let brn of selectedBranches; let i=index;">{{i+1}} - {{brn?.branch}}</a>
+
+                </div>
+            </div>
+
+            <!-- conent ends here -->
+            <i class="fas fa-times" (click)="showModel=false;"></i>
+
+        </div>
+    </div>
+</div>

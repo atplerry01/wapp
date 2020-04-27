@@ -1,0 +1,37 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<app-report-template 
+[showPagination]="true"
+[showPerPage]="true"
+[isRowSelectable]="true"
+[searchText1_Placeholder]="'Loan Account Number'"
+
+[showDropdownMenu1]="true"
+[dropdownMenu1List]="reportTypes"
+(DropdownMenu1Triggered)="onReportTypeChange($event)" 
+[dropdownMenu1SelectedCode]="selectedReportOption"
+
+[showBranchList]="true" 
+[showDate]="true" 
+[isDateRange]="true" 
+[showExcelExport]="true"  
+
+[isInprogress]="isInprogress"
+[showNotFoundMsg]="showNotFoundMsg" 
+[showSearch]="true" 
+[showDate]="false" 
+[isDateRange]="false"
+[dateFormat]="'YYYY-MM-DD'" 
+[moduleName]="'LR-LM-Account TurnOver'"
+[reportTitle]="reportTitle"
+[reportHeaders]="reportHeaders" 
+[reportData]="reportData"
+[page]="page" 
+[per_page]="per_page" 
+[total_pages]="total_pages" 
+[totalRecords]="totalRecords" 
+(pageChange)="onPageChange($event)"
+>
+</app-report-template>

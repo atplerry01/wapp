@@ -1,0 +1,44 @@
+@import "../../../assets/sass/input";
+
+.formContainer {
+    width: 70%;
+    margin: auto;
+    background-color: #fbfbfb;
+    @include font-size(7);
+  
+    .userData {
+      padding: 10px;
+      line-height: 25px;
+  
+      .label {
+        padding: 10px;
+      }
+  
+      .prop {
+        font-weight: bold;
+      }
+    }
+  
+    img {
+      max-height: 600px;
+    }
+  
+    input[type="text"] {
+      height: 30px !important;
+      display: inline-block !important;
+      margin-left: 10px;
+    }
+  
+    label {
+      cursor: pointer;
+      input[type="checkbox"] {
+        width: 17px; /*Desired width*/
+        height: 17px; /*Desired height*/
+        cursor: pointer;
+        height: 30px;
+        display: inline-block;
+        margin-left: 10px;
+      }
+    }
+  }
+  

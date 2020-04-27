@@ -1,0 +1,29 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<app-report-template 
+
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg" 
+[showSearch]="true" 
+[showPagination]="true" 
+[showPerPage]="true" 
+[showDate]="true" 
+[isDateRange]="true" 
+[showTotal]="true"
+[searchText1_Placeholder]="'Account Number'"
+[moduleName]="'Account Introducers Report'" 
+
+[reportTitle]="'Account Introducers Report'"
+[reportHeaders]="reportHeaders" 
+[reportData]="accounts" 
+
+(searchTriggered)="onSearch($event)" 
+ [page]="page" 
+ [total_pages]="total_pages"  
+ (pageChange)="onPageChange($event)" 
+ >
+</app-report-template>
+
+<app-footer></app-footer>

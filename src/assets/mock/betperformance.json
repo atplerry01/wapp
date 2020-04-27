@@ -1,0 +1,504 @@
+[
+    {
+      "bet": {
+        "details": [
+          {
+            "Id": 1,
+            "accountnumber": "0122292606",
+            "accountname": "KC GAMING NETWORKS LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 2,
+            "accountnumber": "0122778506",
+            "accountname": "KC GAMING NETWORKS LTD(ACCT 3)",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 3,
+            "accountnumber": "0122778829",
+            "accountname": "KC GAMING NETWORKS LIMITED ACCT 2",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 4,
+            "accountnumber": "0702866416",
+            "accountname": "KC GAMING NETWORKS LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 5,
+            "accountnumber": "0702868221",
+            "accountname": "KC GAMING NETWORKS LTD(ACCT 3)",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 6,
+            "accountnumber": "0702867884",
+            "accountname": "KC GAMING NETWORKS LTD(ACCT 3)",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 7,
+            "accountnumber": "0702869417",
+            "accountname": "KC GAMING NETWORKS LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 8,
+            "accountnumber": "0702865196",
+            "accountname": "KC GAMING NETWORKS LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 9,
+            "accountnumber": "0702868245",
+            "accountname": "KC GAMING NETWORKS LTD(ACCT 3)",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 10,
+            "accountnumber": "0702869462",
+            "accountname": "KC GAMING NETWORKS LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 11,
+            "accountnumber": "0122285796",
+            "accountname": "PREMIER LOTTO LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 12,
+            "accountnumber": 2410193509,
+            "accountname": "PREMIER LOTTO LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 13,
+            "accountnumber": 2410193516,
+            "accountname": "PREMIER LOTTO LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 14,
+            "accountnumber": "0122369487",
+            "accountname": "PREMIER LOTTO LTD ACCT 2",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 15,
+            "accountnumber": "0122376782",
+            "accountname": "PREMIER LOTTO LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 16,
+            "accountnumber": "0122483523",
+            "accountname": "PREMIER LOTTO LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 17,
+            "accountnumber": "0122554553",
+            "accountname": "PREMIER LOTTO LTD /OSOGBO OPERATION",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 18,
+            "accountnumber": "0122554577",
+            "accountname": "PREMIER LOTTO LTD  IBADAN OPERATION",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 19,
+            "accountnumber": "0122554618",
+            "accountname": "PREMIER LOTTO LTD AKURE OPERATION",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 20,
+            "accountnumber": "0122554591",
+            "accountname": "PREMIER LOTTO LTD ABEOKUTA OPERATION",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 21,
+            "accountnumber": "0122554649",
+            "accountname": "PREMIER LOTTO LTD BENIN OPERATION",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 22,
+            "accountnumber": "0122554656",
+            "accountname": "PREMIER LOTTO LTD ADO EKITI OPERATION",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 23,
+            "accountnumber": "0122629134",
+            "accountname": "PREMIER LOTTO LTD BENIN OPERATION ACCOUNT",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 24,
+            "accountnumber": "0122629158",
+            "accountname": "PREMIER LOTTO LTD AKURE OPERATION ACCOUNT",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 25,
+            "accountnumber": "0122683347",
+            "accountname": "PREMIER LOTTO LIMITED-ASABA OPERATION",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 26,
+            "accountnumber": "0122685389",
+            "accountname": "PREMIER LOTTO LIMITED-KANO BRANCH OPERATION",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 27,
+            "accountnumber": "0122694224",
+            "accountname": "PREMIER LOTTO LTD MAINLAND OPERATION",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 28,
+            "accountnumber": "0122705908",
+            "accountname": "LAFENWA OPERATIONS-PREMIER LOTTO LTD",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 29,
+            "accountnumber": "0122705915",
+            "accountname": "ITAOSHIN OPERATIONS-PREMIER LOTTO LTD",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 30,
+            "accountnumber": "0122705922",
+            "accountname": "ASERO OPERATIONS-PREMIER LOTTO LTD",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 31,
+            "accountnumber": "0122705939",
+            "accountname": "OMIDA OPERATIONS-PREMIER LOTTO LTD",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 32,
+            "accountnumber": "0122740183",
+            "accountname": "PREMIER LOTTO AGENTS ASSOCIATION",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 33,
+            "accountnumber": "0122741238",
+            "accountname": "PREMIER LOTTO LIMITED OPERATIONS(IKEJA OPERATION ACCOUNT)",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 34,
+            "accountnumber": "0122753820",
+            "accountname": "PREMIER LOTTO LIMITED-UYO OPERATION ACCOUNT",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 35,
+            "accountnumber": "0122754872",
+            "accountname": "PREMIER LOTTO LIMITED- IMPREST ACCOUNT",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 36,
+            "accountnumber": "0122776746",
+            "accountname": "PREMIER LOTTO LIMITED--OBA AKRAN BRANCH OPERATION ACCOUNT",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 37,
+            "accountnumber": "0702871274",
+            "accountname": "PREMIER LOTTO LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 38,
+            "accountnumber": "0122305810",
+            "accountname": "WINNERS GOLDEN BET NIGERIA LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 39,
+            "accountnumber": "0122344529",
+            "accountname": "WINNERS GOLDEN BET NIGERIA LIMITED ACCOUNT 2",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 40,
+            "accountnumber": "0122439977",
+            "accountname": "WINNERS GOLDEN BET NIGERIA LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 41,
+            "accountnumber": "0702593015",
+            "accountname": "WINNERS GOLDEN BET NIGERIA LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 42,
+            "accountnumber": "0122252316",
+            "accountname": "WESCO POOLS AND LOTTERY LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 43,
+            "accountnumber": "0122706242",
+            "accountname": "WESCO POOLS AND LOTTERY LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 44,
+            "accountnumber": "0620166766",
+            "accountname": "WESCO POOLS AND LOTTERY LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 45,
+            "accountnumber": "0122714661",
+            "accountname": "WESCOBET INTERNATIONAL LTD",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 46,
+            "accountnumber": "0122721461",
+            "accountname": "WESCO POOLS & LOTTERY LTD",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 47,
+            "accountnumber": "0122804722",
+            "accountname": "WESCO POOLS AND LOTTERY LIMITED (SALARY)",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 48,
+            "accountnumber": "0122662535",
+            "accountname": "COLLABO BET NIG LTD",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 49,
+            "accountnumber": "0620179441",
+            "accountname": "COLLABO BET NIG LTD",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 50,
+            "accountnumber": "0122728965",
+            "accountname": "WESTERN LOTTO NIGERIA LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 51,
+            "accountnumber": "0122728972",
+            "accountname": "WESTERN LOTTO NIGERIA COLLECTION ACCOUNT",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 52,
+            "accountnumber": "0122731970",
+            "accountname": "WESTERN LOTTO NIGERIA LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 53,
+            "accountnumber": "0122734191",
+            "accountname": "WESTERN LOTTO COLLECTION ACCOUNT",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 54,
+            "accountnumber": "0122795334",
+            "accountname": "WESTERN LOTTO NIGERIA LTD",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 55,
+            "accountnumber": "0122456932",
+            "accountname": "GET ALTITUDE NIGERIA LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 56,
+            "accountnumber": "0122812330",
+            "accountname": "VERTICAL BETS AND GAMING LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 57,
+            "accountnumber": "0122614534",
+            "accountname": "BIA STELLAR SOLUTIONS & CONCEPT LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 58,
+            "accountnumber": "0122621475",
+            "accountname": "BIA STELLAR SOLUTIONS & CONCEPT LIMITED ACCT 2",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 59,
+            "accountnumber": "0122720141",
+            "accountname": "BIA STELLAR SOLUTIONS & CONCEPT LTD- ABEOKUTA OPERATIONS",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 60,
+            "accountnumber": "0122720158",
+            "accountname": "BIA STELLAR SOLUTIONS & CONCEPT LTD- BENIN OPERATIONS",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 61,
+            "accountnumber": "0122720172",
+            "accountname": "BIA STELLAR SOLUTIONS & CONCEPT LTD- ADO-EKITI OPERATIONS",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          },
+          {
+            "Id": 62,
+            "accountnumber": "0122696503",
+            "accountname": "CHESSPLUS INTERNATIONAL LIMITED",
+            "total": "",
+            "volume": "",
+            "status": "N"
+          }
+        ]
+      }
+    }
+  ]

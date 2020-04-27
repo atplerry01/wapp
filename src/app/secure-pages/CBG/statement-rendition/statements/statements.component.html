@@ -1,0 +1,79 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<app-report-template 
+[isRowSelectable]="true" 
+(rowSelectionTriggered)="onRowSelected($event)"
+  [isInprogress]="isInprogress" 
+  [showNotFoundMsg]="showNotFoundMsg" 
+  [showSearch]="true" 
+  [showDropdownMenu1]="true"
+  [dropdownMenu1List]="reportNameList" 
+  [dropdownMenu1SelectedCode]="reportName"
+  (DropdownMenu1Triggered)="onReportNameChanged($event)" 
+  [showDate]="true" 
+  [isDateRange]="true" 
+  [searchText1_Placeholder]="'CIF Number'" 
+  [dateFormat]="'YYYY-MM-DD'" 
+  [moduleName]="['SR-Statement Checker', 'SR-Statement Profiling']"
+  [reportTitle]="'Statement Rendition Report'" 
+  [reportHeaders]="statementHeader" 
+  [reportData]="reportData"
+  (searchTriggered)="onSearch($event)" 
+  [showEdit]="selectedType === 'pending' &&  accessKey === 'C'"
+  (editRowTriggered)="onMenuEdit($event)" 
+  [showDelete]="(selectedType === 'approved' || selectedType === 'pending') &&  accessKey === 'C'"
+  (deleteRowTriggered)="onSubMenuDelete($event)"
+  (myAccessTriggered)="myAccess($event)"
+  [showPagination]="true" 
+ [page]="page" 
+ [per_page]="per_page" 
+ [total_pages]="total_pages" 
+[totalRecords]="totalRecords" 
+ (pageChange)="onPageChange($event)"
+  >
+</app-report-template>
+
+<!-- [showPagination]="true" 
+[showPerPage]="true" 
+ [page]="page" 
+ [per_page]="per_page" 
+ [total_pages]="total_pages" 
+[totalRecords]="totalRecords" 
+ (pageChange)="onPageChange($event)" -->
+
+<!-- model box section -->
+<div class="pop" *ngIf="showForm">
+  <div class="modal">
+
+    <div class="modal__inner">
+      <div class="form-header" style="font-size: 18px">{{formTitle}}</div>
+
+      <div class="myform">
+        <div class="spinner" *ngIf="isInprogress"></div>
+
+        <div *ngIf="currentAction === 'reject'" class="errorColor">
+          <h4>This record is about to be removed from this platform</h4>
+        </div>
+        <div>
+          <h4> Associated Account<span *ngIf="statementProfiles?.length>1">s</span></h4>
+          <ul>
+            <li *ngFor="let profile of statementProfiles">
+              <strong style="font-size: 14px">{{ profile.accountNumber }}</strong>
+            </li>
+          </ul>
+        </div>
+
+
+        <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+          [showSubmit]="showModalSubmit"
+          (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+        </app-form-template>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<app-footer></app-footer>

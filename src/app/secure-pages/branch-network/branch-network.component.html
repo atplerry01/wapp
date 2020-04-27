@@ -1,0 +1,120 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<div class="main-content">
+
+
+
+
+  <!-- account details section -->
+  <div class="card-box-shadow report-header alignmiddle">
+   Branch Network
+  </div>
+
+  <div class="card-box-shadow report-content">
+
+    <div class="card-box-shadow" *ngIf="regionSummary?.length">
+      <div class="table-responsive-vertical shadow-z-1 form-table">
+        <table id="table" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Region</th>
+              <th class="align-text-right">Total #Zones</th>
+              <th class="align-text-right">Total #Branches</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let rep of regionSummary; let i=index" [hidden]="selectedRegionIndex!==null && selectedRegionIndex!==i">
+              <td data-title="#">{{i+1}}</td>
+              <td data-title="Region" class="td-link" data-tool-tip="Click to drilldown to zones" (click)="getAccountStatiticsByRegion(i, 'Z', rep?.RegionCode)">{{rep?.RegionName}}</td>
+              <td data-title="Total #Zones" class="align-text-right">{{rep?.TotalZones}}</td>
+              <td data-title="Total #Branches" class="align-text-right">{{rep?.TotalBranches}}</td>
+            </tr>
+
+            <tr class="tb-footer"  [hidden]="selectedRegionIndex!==null || regionSummary?.length<2">
+              <td data-title="" colspan="2"></td>
+              <td data-title="Dormancy Ratio(%)" class="align-text-right">{{totalZone}}</td>
+              <td data-title="Total Volume." class="align-text-right">{{totalBranches}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!-- Drilldown to Zones -->
+    <div class="card-box-shadow regionDrilldownContainer" *ngIf="zoneSummary?.length">
+        <i class="fas fa-times closeSection" (click)="close()"></i>
+
+      <div class="table-responsive-vertical shadow-z-1 form-table">
+        <table id="table" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Zone</th>
+              <th class="align-text-right">Total #Branches</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let rep of zoneSummary; let i=index" [class.selectedRegion]="selectedZoneIndex===i">
+              <td data-title="#">{{i+1}}</td>
+              <td data-title="Zone"  [class.td-link]="selectedZoneIndex!==i" data-tool-tip="Click to drilldown to Branches" (click)="getAccountStatiticsByRegion(i, 'B', rep?.ZoneCode)">{{rep?.ZoneName}}</td>
+              <td data-title="Total #Branches" class="align-text-right">{{rep?.TotalBranches}}</td>            
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+     <!-- Drilldown to Branches -->
+     <div class="card-box-shadow zoneDrilldownContainer" *ngIf="branchDetail?.length">
+      <div class="table-responsive-vertical shadow-z-1 form-table">
+        <table id="table" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Code</th>
+              <th>Branch</th>
+              <th>Address</th>
+              <th>State</th>
+              <th class="align-text-right">Line Number</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let rep of branchDetail; let i=index">              
+              <td data-title="#">{{i+1}}</td>
+              <td data-title="Code">{{rep?.BranchCode}}</td>
+              <td data-title="Branch">{{rep?.BranchName}}</td>
+              <td data-title="Address">{{rep?.Address}}</td>
+              <td data-title="State">{{rep?.State}}</td>
+              <td data-title="Line Number" class="align-text-right">{{rep?.LineNumber}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <div class="spinner" *ngIf="isInprogress"></div>
+  <div class="card-box-shadow alignmiddle notfound" *ngIf="!isInprogress && isSearchedBefore && !regionSummary?.length">
+    Report not found!
+  </div>
+  <!-- account detail section end here -->
+
+</div>
+
+
+<app-footer></app-footer>

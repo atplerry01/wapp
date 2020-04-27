@@ -1,0 +1,99 @@
+.mat-form-field-type-mat-native-select.mat-form-field-disabled
+  .mat-form-field-infix::after,
+.mat-input-element:disabled {
+  color: #000 !important;
+}
+
+.mat-input-element:disabled {
+  color: #000 !important;
+}
+
+ul.column {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+ul.column li {
+  float: left;
+}
+
+ul.column li span {
+  display: block;
+  text-align: center;
+  padding: 7px 16px;
+  text-decoration: none;
+  color: #333;
+}
+
+.addButton li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 7px 16px;
+  text-decoration: none;
+}
+
+ul.submenu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+ul.submenu li {
+  float: left;
+}
+
+ul.submenu li span {
+  display: block;
+  text-align: center;
+  padding: 7px 16px;
+  text-decoration: none;
+  color: #333;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 7px 16px;
+  text-decoration: none;
+}
+
+li span {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 7px 16px;
+  text-decoration: none;
+}
+
+li span .active {
+  color: red;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #efefef;
+}
+
+li span:hover {
+  background-color: #efefef;
+  color: black;
+}

@@ -1,0 +1,256 @@
+<div class="main-content">
+
+    <!-- Performance Management/Return on Asset(ROA) Page -->
+  
+    <div class="card-box-shadow searcharea" *ngIf="showSearch">
+  
+  
+      <!-- <select *ngIf="showPagination && showPerPage" [(ngModel)]="per_page">
+        <option [ngValue]="50">50 Per Page</option>
+        <option [ngValue]="100">100 Per Page</option>
+        <option [ngValue]="200">200 Per Page</option>
+        <option [ngValue]="300">300 Per Page</option>
+        <option [ngValue]="400">400 Per Page</option>
+        <option [ngValue]="500">500 Per Page</option>
+      </select> -->
+  
+      <mat-form-field  style="width: 60px; margin-left: 5px;" *ngIf="showPagination && showPerPage">
+        <mat-select placeholder="Per Page" [(value)]="per_page">
+          <mat-option [value]="15">15</mat-option>
+          <mat-option [value]="20">20</mat-option>
+          <mat-option [value]="50">50</mat-option>
+          <mat-option [value]="100">100</mat-option>
+          <mat-option [value]="200">200</mat-option>
+          <mat-option [value]="300">300</mat-option>
+          <mat-option [value]="400">400</mat-option>
+          <mat-option [value]="500">500</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+  
+      <!-- <select *ngIf="showDropdownMenu1" [(ngModel)]="dropdownMenu1SelectedCode" (change)="DropdownMenu1Changed()">
+        <option *ngFor="let drp of dropdownMenu1List" [ngValue]="drp.code">{{drp.name}}</option>
+      </select> -->
+     
+      <mat-form-field *ngIf="showDropdownMenu1"  style="margin: 0 5px;" [style.width.px]="showDropdownMenu1_width">
+        <mat-select [placeholder]="showDropdownMenu1_Placeholder"  [(value)]="dropdownMenu1SelectedCode"  
+        (selectionChange)="DropdownMenu1Changed()">
+          <mat-option *ngFor="let drp of dropdownMenu1List" [value]="drp.code">{{drp.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+  
+      <!-- <select *ngIf="showDropdownMenu2" [(ngModel)]="dropdownMenu2SelectedCode" (change)="DropdownMenu2Changed()">
+        <option *ngFor="let drp of dropdownMenu2List" [ngValue]="drp.code">{{drp.name}}</option>
+      </select> -->
+      <mat-form-field *ngIf="showDropdownMenu2"  style="margin: 0 5px;" [style.width.px]="showDropdownMenu2_width">
+        <mat-select [placeholder]="showDropdownMenu2_Placeholder"  [(value)]="dropdownMenu2SelectedCode"  
+        (selectionChange)="DropdownMenu2Changed()">
+          <mat-option *ngFor="let drp of dropdownMenu2List" [value]="drp.code">{{drp.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+  
+      <!-- <select *ngIf="showDropdownMenu3" [(ngModel)]="dropdownMenu3SelectedCode" (change)="DropdownMenu3Changed()">
+        <option *ngFor="let drp of dropdownMenu3List" [ngValue]="drp.code">{{drp.name}}</option>
+      </select> -->
+      <mat-form-field *ngIf="showDropdownMenu3" style="margin: 0 5px;" [style.width.px]="showDropdownMenu3_width">
+        <mat-select [placeholder]="showDropdownMenu3_Placeholder"  [(value)]="dropdownMenu3SelectedCode"  
+        (selectionChange)="DropdownMenu3Changed()">
+          <mat-option *ngFor="let drp of dropdownMenu3List" [value]="drp.code">{{drp.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <!-- <select *ngIf="showBranchList && branches?.length" [(ngModel)]="selectedBranchCode">
+        <option [ngValue]="''">Select branch...</option>
+        <option *ngFor="let brn of branches" [ngValue]="brn.branchcode">{{brn.branch}}</option>
+      </select> -->
+  
+      <mat-form-field *ngIf="showBranchList && branches?.length" style="width: 160px; margin: 0 5px;">
+        <mat-select placeholder="Branch"  [(value)]="selectedBranchCode" >
+          <mat-option *ngFor="let brn of branches" [value]="brn.branchcode">{{brn.branch}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <app-my-datepicker *ngIf="showDate" style="padding: 0 10px;"
+                  [isDateRange]="isDateRange"
+                  [dateFormat]="dateFormat"
+                  (date1Triggered)="Date1_Changed($event)"
+                  (date2Triggered)="Date2_Changed($event)"
+                  >                    
+                  </app-my-datepicker>
+  
+      <!-- <input type="text" class="textbox" *ngIf="searchText1_Placeholder" [placeholder]="searchText1_Placeholder"
+        [(ngModel)]="searchText1" /> -->
+  
+        <mat-form-field  *ngIf="searchText1_Placeholder" [style.width.px]="searchText1_width">
+          <input matInput [placeholder]="searchText1_Placeholder" [(ngModel)]="searchText1">
+        </mat-form-field>
+  
+      <!-- <input type="text" class="textbox" *ngIf="searchText2_Placeholder" [placeholder]="searchText2_Placeholder"
+        [(ngModel)]="searchText2" /> -->
+        <mat-form-field  *ngIf="searchText2_Placeholder" [style.width.px]="searchText2_width">
+          <input matInput [placeholder]="searchText2_Placeholder" [(ngModel)]="searchText2">
+        </mat-form-field>
+  
+      <i class="fa fa-search enq-inp-incon" (click)="onSearch()"></i>
+  
+    </div>
+  
+    <div class="card-box-shadow report-content">
+  
+        <div class="topCloseIcon" *ngIf="showTopCloseIcon">
+            <i class="fas fa-times closeSection" (click)="topClose()"></i>
+      </div>
+  
+      
+      <div class="exporter" *ngIf="showExcelExport && reportData?.length">
+        <i class="far fa-file-excel" (click)="ExportDataToExcel()" data-tool-tip="Export Table to excel"></i>
+      </div>
+  
+      <div class="card-box-shadow report-title alignmiddle">
+             
+  
+        <div style="float: left;" *ngIf="showPagination && reportData?.length">
+          Total Records: {{ totalRecords }}&nbsp;&nbsp;... Page {{page}} of {{total_pages}}
+        </div>
+       
+        <!-- <input type="text" class="textbox" *ngIf="showTextFilter"
+        [placeholder]="filterTextPlaceholder" #filterText (keyup)="onFilterTextChange(filterText.value)" /> -->
+  
+        <mat-form-field  *ngIf="showTextFilter" style="margin-left: 5px;" [style.width.px]="textFilter_width">
+          <input matInput [placeholder]="filterTextPlaceholder" #filterText (keyup)="onFilterTextChange(filterText.value)">
+        </mat-form-field>
+  
+       
+        <!-- <select *ngIf="showDropdownFilter" [(ngModel)]="filterDropdownSelectedCode" (change)="filterDropdownChanged()">
+          <option [ngValue]="filterDropdownSelectedCode">{{filterDropdownDefaultValue}}</option>
+          <option *ngFor="let drp of filterDropdownList" [ngValue]="drp.code">{{drp.name}}</option>
+        </select> -->
+      
+        <mat-form-field *ngIf="showDropdownFilter" style="margin-left: 5px;" [style.width.px]="dropdownFilter_width">
+          <mat-select [placeholder]="dropdownFilter_Placeholder" [(value)]="filterDropdownSelectedCode"  
+          (selectionChange)="filterDropdownChanged()">
+          <mat-option [value]="filterDropdownSelectedCode">{{filterDropdownDefaultValue}}</mat-option>
+            <mat-option *ngFor="let drp of filterDropdownList" [value]="drp.code">{{drp.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field *ngIf="showDropdownFilter2" style="margin-left: 5px;" [style.width.px]="dropdownFilter_width2">
+            <mat-select [placeholder]="dropdownFilter_Placeholder2" [(value)]="filterDropdownSelectedCode2"  
+            (selectionChange)="filterDropdownChanged2()">
+            <mat-option [value]="filterDropdownSelectedCode2">{{filterDropdownDefaultValue2}}</mat-option>
+              <mat-option *ngFor="let drp of filterDropdownList2" [value]="drp.code">{{drp.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+  
+        {{reportTitle}}
+  
+      
+
+        <div class="accesslevelLayout"> 
+            <button *ngIf="showTitleButton" mat-raised-button style="margin: 0 10px;" (click)="titleButtonEvent()">{{titleButtonLabel}}</button> 
+            <ng-container  *ngIf="showAccess && myAccess">             
+                <span [class]="myAccess?.myclass">
+                    <i class="fas fa-circle"></i>
+                    <span class="name">{{myAccess?.name}}</span>
+                    <span class="desc">{{myAccess?.description}}</span>
+                  </span>
+            </ng-container>       
+        </div>
+  
+  
+      </div>
+  
+  
+      <div class="card-box-shadow"  style=" overflow-x: auto;">
+          <button  *ngIf="showAdd"  (click)="onAddRow()"  class="mybutton add"><i class="fas fa-plus"></i> Add</button>
+  
+        <div class="table-responsive-vertical shadow-z-1 form-table" *ngIf="reportData?.length">
+          <table id="table" class="table table-hover table-mc-light-blue">
+            <thead>
+              <tr>
+                <th *ngIf="isMultiSelectable">
+                    <input id="checkAll" type="checkbox" (click)="setAllCheckedItems()" [(ngModel)]="checkedAll" />
+                </th>
+                <th class="align-text-right">#</th>
+                <th *ngFor="let hd of reportHeaders;" (click)="sortable(hd.name)" 
+                [class.sort]="isSortable" 
+                [class.align-text-right]="hd?.right">{{hd?.title}} 
+                  <span *ngIf="isSortable && hd.name===currentSortPropertyName">
+                    <i [hidden]="currentSortOrder !== 'desc'" class="fas fa-sort-up"></i>
+                    <i [hidden]="currentSortOrder !== 'asc'" class="fas fa-sort-down"></i>
+                  </span>
+                </th>
+                <th  *ngIf="showEdit || showDelete"></th>
+              </tr>
+            </thead>
+            <tbody>
+  
+              <tr *ngFor="let rep of reportData; let i=index" [hidden]="selectedIndex!==null && selectedIndex!==i && isCollapseOnSelect">
+                
+               <td *ngIf="isMultiSelectable">
+                 <input id="checkitem" type="checkbox" [checked]="isChecked(rep)" (click)="setCheckedItem(rep)" />
+                </td>
+  
+                <td data-title="#" class="align-text-right">{{i+1}}</td>
+  
+                <td *ngFor="let hd of reportHeaders; let x=index"
+                [attr.data-title]="hd?.title" 
+                [class.trclickable]="isRowSelectable" [class.tdclickable]="isColumnSelectable"
+                (click)="getSelectedRow(i, rep, hd?.name)" class="wrapText" [class.align-text-right]="hd?.right">
+                  <div [ngSwitch]="getCode(x)">
+                    <span *ngSwitchCase="1"> {{getValue(rep, x)}}</span>
+                    <span *ngSwitchCase="2"> {{getValue(rep, x) | date:'dd-MMM-yyyy'}}</span>
+                    <span *ngSwitchCase="3"> {{getValue(rep, x) | currency:' '}}</span>
+                    <span *ngSwitchCase="4"> <img [src]="getValue(rep, x)" width="150" height="150"   alt="No Picture"></span>
+                  </div>
+                </td>
+  
+                <td class="align-text-right tdIcons" *ngIf="showEdit || showDelete" >
+                  <i (click)="onEditRow(rep)" class="far fa-edit edit" *ngIf="showEdit"></i> 
+                  <i (click)="onDeleteRow(rep)" class="far fa-trash-alt del" *ngIf="showDelete"></i>
+                </td>
+  
+  
+              </tr>
+  
+              <tr class="tb-footer" *ngIf="showTotal && reportData?.length>1">
+                <td data-title=""></td>
+  
+                <td *ngFor="let hd of reportHeaders;" class="wrapText align-text-right">
+                  {{hd?.total | currency:' '}}
+                </td>
+              </tr>
+  
+  
+            </tbody>
+          </table>
+          <div class="closeIcon" *ngIf="isRowSelectable && showCloseIcon && isCollapseOnSelect && selectedIndex!==null">
+            <i class="fas fa-times closeSection" (click)="close()"></i>
+          </div>
+  
+          <div *ngIf="showPagination">
+            <app-pagination [calculate]="false" [offset]="page" [limit]="per_page" [size]="total_pages" [range]="10"
+            (pageChange)="onPageChange($event)"></app-pagination>
+          </div>
+  
+        </div>
+  
+  
+  
+      </div>
+  
+  
+    </div>
+  
+  
+  
+    <div class="spinner" *ngIf="isInprogress"></div>
+    <div class="card-box-shadow alignmiddle notfound" *ngIf="showNotFoundMsg">
+      Report not available for this search criteria!
+    </div>
+  
+  </div>
+  

@@ -1,0 +1,62 @@
+<app-header> </app-header>
+<app-menu></app-menu>
+
+<div class="pagelink">
+  <div>
+      <a class="nav-link" [routerLink]="['/retail/remita-lending-status']"> View Remita Lending Status </a>   
+  </div>
+</div>
+
+<app-report-template
+  [isInprogress]="isInprogress"
+  [showNotFoundMsg]="showNotFoundMsg"
+  [showSearch]="true"
+  [searchText1] ="searchPhoneNo"
+  [searchText1_Placeholder]="'Phone Number'"
+  [moduleName]="'Create Remita Lending'"
+  [reportTitle]="'Remita Lending - Salary History'"
+  [reportHeaders]="salaryHistoryHeader" 
+  [reportData]="salaryPaymentDetails"
+  (searchTriggered)="onSearch($event)"
+  [showTitleButton]="salaryPaymentDetails?.length"
+  (titleButtonTriggered)="showForm=true"
+>
+</app-report-template>
+
+<ng-container *ngIf="reportData?.loanHistoryDetails?.length">
+<app-report-template
+[showAccess]="false"
+  [moduleName]="'Create Remita Lending'"
+  [reportTitle]="'Loan History'"
+  [reportHeaders]="loanHistoryHeader" 
+  [reportData]="reportData?.loanHistoryDetails"
+>
+</app-report-template>
+</ng-container>
+
+
+<div class="spinner" *ngIf="isInprogress"></div>
+
+<app-footer></app-footer>
+
+
+
+
+
+ <!-- model box section -->
+ <div class="pop" *ngIf="showForm">   
+  <div class="modal">     
+     
+    <div class="modal__inner">
+        <div class="form-header">Create Loan</div>
+
+      <div class="myform">
+          <div class="spinner" *ngIf="isInprogress"></div>
+          <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)" (closeTriggered)="closeForm()">            
+          </app-form-template>       
+
+      </div> 
+        
+    </div>    
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<div style="background-color: white; width: 50%; margin: auto;">
+
+ 
+  <form role="form" novalidate [formGroup]="form" (ngSubmit)="submit(model)">
+    <formly-form [model]="model" [fields]="fields" [form]="form">
+      <button type="submit" mat-raised-button>Submit</button>
+    </formly-form>
+  </form>
+
+
+</div>
+
+
+
+<app-footer></app-footer>

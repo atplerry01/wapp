@@ -1,0 +1,86 @@
+<!-- /NAV -->
+<!-- <nav id="nav-bar" class="navbar navbar-expand-md navbar-dark" #myMenu>
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/sc/home']">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item"  *ngFor="let itm of menu" [class.dropdown]="itm?.header_standalone==='N'">
+                    <a class="nav-link" *ngIf="itm?.header_standalone==='Y'" (click)="goto(itm?.header_dispaly_inside, itm?.header, itm?.header_url)">{{itm.header}}</a>
+                    <a class="nav-link dropdown-toggle" *ngIf="itm?.header_standalone==='N'" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{itm.header}}</a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdown01" *ngIf="itm?.header_sub?.length">
+                        <a class="dropdown-item" *ngFor="let sub of itm.header_sub" (click)="goto(sub?.submenu_display_inside,sub?.submenu_name,sub?.submenu_link)">{{sub?.submenu_name}}</a>
+                    </div>
+                </li> -->
+
+<!-- ---------------------------------------------------------------------------------- -->
+                <!-- <div class="showOnMobile">
+                        <li class="nav-item"><a class="nav-link">Employee Connect  <i class="fas fa-users"></i></a></li>
+                        <li class="nav-item"><a class="nav-link">Customer Service  <i class="fas fa-headphones"></i></a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['/sc/branchnetwork']">Branch Network  <i class="fas fa-cogs"></i></a></li>
+                </div>
+              
+                <li class="hideLogout showLogout">
+                    <a class="nav-link" (click)="logout()">Logout
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav> -->
+
+<!-- /NAV -->
+
+
+
+
+
+  
+      <nav>
+        <div [class.visible]="visible" class="nav-fostrap">
+        <div class="navULContainer">
+          <ul>
+            <li><a [routerLink]="['/sc/home']"><i class="fas fa-home"></i></a></li>
+
+            <li *ngFor="let itm of menu; let i=index">   
+              <ng-container *ngIf="itm?.header_display==='Y'">     
+                <a *ngIf="itm?.header_standalone==='Y'" (click)="goto(itm?.header_dispaly_inside, '', itm?.header_url)">{{itm.header}}</a>
+                <a *ngIf="itm?.header_standalone==='N'" (click)="onMenuDropdownULClick(i)">{{itm.header}}<span class="arrow-down"></span></a>
+                <ul *ngIf="itm?.header_sub?.length" class="dropdown"  [class.display]="display && selectedUL===i">
+                  <li *ngFor="let sub of itm.header_sub">
+                      <ng-container *ngIf="sub?.submenu_display==='Y'">   
+                      <a  (click)="goto(sub?.submenu_display_inside, sub?.submenu_id, sub?.submenu_link)">{{sub?.submenu_name}}</a>
+                   </ng-container>
+                  </li>
+                </ul>
+              </ng-container>
+            </li>
+
+            <li class="showOnMobile"><a>Employee Connect<i class="fas fa-users"></i></a></li>
+            <li class="showOnMobile"><a>Customer Service<i class="fas fa-headphones"></i></a></li>
+            <li class="showOnMobile"><a [routerLink]="['/sc/branchnetwork']">Branch Network<i class="fas fa-cogs"></i></a></li>
+            <li class="showOnMobile"><a (click)="logout()">Logout<i class="fas fa-sign-out-alt"></i></a></li>
+          </ul>
+        </div>
+        </div>
+
+        <div class="nav-bg-fostrap">
+          <div class="navbar-fostrap" (click)="onNavbarClick()"> <span></span> <span></span> <span></span> </div>
+          <a [routerLink]="['/sc/home']" class="title-mobile"> <span>i</span>WEMA</a>
+        </div>
+      </nav>
+      
+
+

@@ -1,0 +1,63 @@
+<app-header> </app-header>
+<app-menu></app-menu>
+
+<div class="pagelink">
+  <div>
+      <a class="nav-link" [routerLink]="['/sc/banking/statement-approval']"> View Statement Rendation Status </a>
+  </div>
+</div>
+
+<app-report-template
+  [isInprogress]="isInprogress"
+  [showNotFoundMsg]="showNotFoundMsg"
+  [showSearch]="true"
+  [showDate]="true"
+  [isDateRange]="true"
+
+  [showDropdownMenu1]="true"
+  [dropdownMenu1List]="reportTypes"
+  (DropdownMenu1Triggered)="onReportTypeChange($event)"
+  [dropdownMenu1SelectedCode]="selectedReportOption"
+  [moduleName]="'HCM-File Archive User Request'"
+  [dateFormat]="'YYYY-MM-DD'"
+  [reportTitle]="'Create File Request'"
+  [reportHeaders]=""
+  [reportData]=""
+  (searchTriggered)="onSearch($event)"
+>
+</app-report-template>
+
+<div class="formContainer card-box-shadow">
+  <div style="padding: '10px 0 10px';">
+    <h2>Create a New Request</h2>
+  </div>
+      <div class="setFormMargin">
+          <app-form-template
+            [model]="model"
+            [fields]="fields"
+            (submitTriggered)="submit()"
+            (closeTriggered) = "cancel()"
+            [submitLabel]="submitLabel">
+          </app-form-template>
+    </div>
+
+      <app-report-template
+        [isInprogress]="isInprogress"
+        [showNotFoundMsg]="showNotFoundMsg"
+        [moduleName]="'SR-Statement Profiling'"
+        [reportTitle]="'Request Logs'"
+        [reportHeaders]="reportHeader"
+        [reportData]="reportData"
+        (searchTriggered)="onSearch2($event)"
+      >
+      </app-report-template>
+
+
+</div>
+
+
+
+
+<div class="spinner" *ngIf="isInprogress"></div>
+
+<app-footer></app-footer>

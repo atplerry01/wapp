@@ -1,0 +1,36 @@
+[{
+    "name": "The SQUARE",
+    "url": "http://insidewema1/wemasquare/default.aspx",
+    "imgurl": "s-square.png", 
+    "classname": "square",
+    "order":1
+  },
+  {
+    "name": "INFO SHARE",
+    "url": "http://172.27.4.22/wemainfoshare/Login.aspx",
+    "imgurl": "s-info.png",
+    "classname": "info",
+    "order":2
+  },
+  {
+    "name": "FINACLE",
+    "url": "https://finweb.wemabank.local:8443/SSO/ui/SSOLogin.html",
+    "imgurl": "s-finacle.png",
+    "classname": "finacle",
+    "order":3
+  },
+  {
+    "name": "FINACLE Everest (New)",
+    "url": "https://finacleweb.wemabank.local:8443/SSO/ui/SSOLogin.jsp",
+    "imgurl": "s-portal.png",
+    "classname": "kss",
+    "order":4
+  },
+  {
+    "name": "PURPLE BOOK",
+    "url": "http://insidewema1/hcm/brandservice/csm/Shared%20Documents/CSM%20Publications/Purple%20Book.pdf",
+    "imgurl": "s-book.png",
+    "classname": "purple",
+    "order":5
+  }
+]

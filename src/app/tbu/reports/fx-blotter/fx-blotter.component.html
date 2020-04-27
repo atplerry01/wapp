@@ -1,0 +1,64 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<!-- [searchText1_Placeholder]="'Loan Account Number'" -->
+
+<app-report-template [showPagination]="false" [showPerPage]="true" [isRowSelectable]="true" [showDate]="true"
+    [isDateRange]="true" [showExcelExport]="true" [isInprogress]="isInprogress" [showNotFoundMsg]="showNotFoundMsg"
+    [showSearch]="true" [showDate]="false" [isDateRange]="false" [dateFormat]="'YYYY-MM-DD'"
+    [moduleName]="'TreasuryBillReport'" [reportTitle]="reportTitle" [reportHeaders]="reportHeader"
+    (searchTriggered)="onSearch($event)"
+    [page]="page" [per_page]="per_page" [total_pages]="total_pages" [totalRecords]="totalRecords"
+    >
+</app-report-template>
+
+<div class="formContainer card-box-shadow">
+    <div>
+        <button type="button" (click)="fireEvent()">Export</button>
+
+        <table class="table" #table>
+            <thead>
+                <tr>
+                    <th>D/S NO</th>
+                    <th>DETAILS/COUNTER PARTY</th>
+                    <th>TXN DATE</th>
+                    <th>VALUE DATE</th>
+                    <th>PURCHASES($)</th>
+                    <th>RATE</th>
+                    <th>OUTFLOW(N)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td class="counterpty">BAL B/F</td>
+                    <td>{{balTnxDate}}</td>
+                    <td>{{balValueDate}}</td>
+                    <td>{{balPurchase}}</td>
+                    <td>{{balRate}}</td>
+                    <td>{{balOutflow}}</td>
+                </tr>
+                <tr *ngFor="let item of reportData; index as i"
+                    ng-class="{'custom-class': item.DEAL_NUM === 'D/S NO' }">
+                    <td>{{item.DEAL_NUM}}</td>
+                    <td class="counterpty">{{item.COUNTERPTY}}</td>
+                    <td>{{item.TNXDATE}}</td>
+                    <td>{{item.VALUEDATE}}</td>
+                    <td>{{numberFormatting(item.AMOUNT)}}</td>
+                    <td>{{item.RATE}}</td>
+                    <td>{{numberFormatting(item.NAIRAAMOUNT)}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="counterpty">OVERALL TOTAL</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{numberFormatting(totalAmount)}}</td>
+                    <td></td>
+                    <td>{{numberFormatting(totalOutflow)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<div class="main-content">
+
+
+  <!-- account details section -->
+
+  <div class="card-box-shadow report-header alignmiddle">
+    First-Time Debit
+
+    <div class="accesslevelLayout" *ngIf="myAccess">
+        <span [class]="myAccess?.myclass"><i class="fas fa-circle"></i><span class="name">{{myAccess?.name}}</span><span class="desc">{{myAccess?.description}}</span></span>
+    </div>
+  </div>
+
+
+  <div class="card-box-shadow searcharea">
+
+    <select [(ngModel)]="selectedBranch" (change)="getFirstTimeDebit()" *ngIf="myAccess?.key!=='B'">
+      <option  [ngValue]="0">Select...</option>
+      <option  [ngValue]="''">Consolidated</option>
+      <!-- <option>--------- Branches ---------</option> -->
+      <option   *ngFor="let brn of branches" [ngValue]="brn.branchcode">{{brn.branch}}</option>
+    </select>
+
+  </div>
+
+
+  <div class="card-box-shadow report-content">
+
+    <div class="card-box-shadow" *ngIf="reports?.length">
+      <div class="table-responsive-vertical shadow-z-1 form-table">
+        <table id="table" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Branch</th>
+              <th>Account #</th>
+              <th>Account Name</th>
+              <th class="align-text-right">Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let rep of reports; let i=index" [ngClass]="{'doubtful-color': rep?.loan_classification==='DOUBTFUL', 'lost-color': rep?.loan_classification==='LOST','substandard-color': rep?.loan_classification==='SUBSTANDARD'}">
+              <td data-title="#">{{i+1}}</td>
+              <td data-title="Branch">{{rep?.Branch}}</td>
+              <td data-title="Account #">{{rep?.AccountNumber}}</td>
+              <td data-title="Account Name">{{rep?.AccountName}}</td>            
+              <td data-title="Balance" class="align-text-right">{{rep?.Balance | currency:' '}}</td>
+            </tr>
+
+            <tr class="tb-footer">
+              <td data-title=""></td>
+              <td data-title=""></td>
+              <td data-title=""></td>
+              <td data-title=""></td>
+              <td data-title="Total Balance" class="align-text-right">{{totalBalance | currency:' '}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="spinner" *ngIf="isInprogress"></div>
+
+  <div class="card-box-shadow alignmiddle notfound" *ngIf="!isInprogress && isSearchedBefore && !reports?.length">
+    Report not available for this search criteria!
+  </div>
+
+  <!-- account detail section end here -->
+
+</div>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,24 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<app-report-template 
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg" 
+[moduleName]="'Employee Attestation Report'"
+[reportTitle]="'Employee Attestation Report'"
+[reportHeaders]="reportHeaders" 
+[reportData]="accounts" 
+[showExcelExport]="true"  
+(exportExcelTriggered)="ExportDataToExcel()"
+[showPagination]="true" 
+[showPerPage]="true" 
+ [page]="page" 
+ [total_pages]="total_pages"  
+ [per_page] = "per_page"
+ (pageChange)="onPageChange($event)"
+ >
+</app-report-template>
+
+
+<app-footer></app-footer>

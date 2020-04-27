@@ -1,0 +1,81 @@
+.bg{
+  background-color: #fff;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.title{
+  
+  padding: 5px 20px;
+
+  &:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+}
+
+.who{
+    padding: 10px;
+
+
+
+.whoIsWho-header{
+    //position: fixed; 
+   // top: 0; 
+   position: relative;
+    width: 100%; 
+    padding: 10px;
+  
+    input{
+      width: 98%; 
+      padding-right: 35px;
+      padding-left: 35px;
+    border-radius: 20px;
+    }
+  
+    .search-icon{
+      font-size:24px; 
+      color: rgba(rgb(187, 177, 177), .3);
+       position: absolute; 
+       top: 16px; 
+       left: 13px;
+    }
+  
+    .ani-spin{
+      font-size:24px; 
+     // @include font-size(14);
+      color:  #dc3545;
+       position: absolute; 
+       top: 16px; 
+       right: 40px;
+    }
+  
+   }
+
+}
+
+.dialogcontent{
+  padding: 10px 20px;
+
+ 
+
+  div {
+padding: 10px;
+    a{
+      display: block;
+      padding: 5px 8px;
+      font-size: 12px;       
+    }
+
+    .selected{
+      font-weight: bold;
+        border-right: 1px solid #9d1287;
+    }
+
+    .header{
+      font-weight: bold;
+      border-bottom: 1px solid #9d1287;
+            }
+  }
+}

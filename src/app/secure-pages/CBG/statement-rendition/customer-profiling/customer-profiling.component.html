@@ -1,0 +1,41 @@
+<app-header> </app-header>
+<app-menu></app-menu>
+
+<div class="pagelink">
+  <div>
+      <a class="nav-link" [routerLink]="['/sc/banking/statement-approval']"> View Statement Rendation Status </a>   
+  </div>
+
+</div>
+
+<app-report-template
+  [isInprogress]="isInprogress"
+  [showNotFoundMsg]="showNotFoundMsg"
+  [showSearch]="true"
+  [searchText1] ="searchText1"
+  [searchText1_Placeholder]="'Account Number'"
+  [moduleName]="'SR-Statement Profiling'"
+  [reportTitle]="'Customer Profiling'"
+  [reportHeaders]="statementHeader" 
+  [reportData]="reportData"
+  (searchTriggered)="onSearch($event)"
+  [isMultiSelectable]="true"
+  (multiSelectedRowsTriggered)="multiSelectedRows($event)"
+>
+</app-report-template>
+
+<div class="formContainer card-box-shadow" *ngIf="reportData?.length">
+      <div class="setFormMargin">
+          <app-form-template
+            [model]="model"
+            [fields]="fields"
+            (submitTriggered)="submit()"
+            (closeTriggered) = "cancel()"
+            [submitLabel]="submitLabel">
+          </app-form-template>
+    </div>
+</div>
+
+<div class="spinner" *ngIf="isInprogress"></div>
+
+<app-footer></app-footer>

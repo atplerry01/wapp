@@ -1,0 +1,15 @@
+                          
+                <mat-form-field (click)="dp.open()" style="width: 145px;">
+                    <input matInput  [min]="date1_minDate" [max]="date1_maxDate" [matDatepicker]="dp" 
+                    [placeholder]="_placeholderDate1" [(ngModel)]="date1" (dateChange)="Date1_Changed()" 
+                     disabled>
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp disabled="false"></mat-datepicker>
+                </mat-form-field>
+                <span class="mydatepickerSeperate" *ngIf="isDateRange"></span>
+                <mat-form-field (click)="dp2.open()" *ngIf="isDateRange"  style="width: 145px;">
+                    <input matInput [min]="date2_minDate" [max]="maxDate"  [matDatepicker]="dp2" 
+                    [placeholder]="_placeholderDate2" [(ngModel)]="date2"  (dateChange)="Date2_Changed()" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                    <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+                </mat-form-field>

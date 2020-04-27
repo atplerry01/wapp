@@ -1,0 +1,49 @@
+@import "../../../../assets/sass/mixins";
+@import "../../../../assets/sass/variables";
+
+.side-bar {
+    width: 200px;
+    padding: 0; // 30px 10px 10px 20px;
+    @include line-height (10);
+border-right: 4px solid $primary-color3;
+  
+   
+.sidebar-links{
+  overflow-y: auto;
+  background-color: lighten(#fff, 30%);// $primary-color2;
+ul{
+  padding-top: 10px;
+  // color: darken(#fff, 20%);
+ // color:  lighten($primary-color4, 40%);
+ color:lighten(#404040, 30%);
+ //color: $fore-color1;
+  li{
+    cursor: pointer;
+    @include font-size(6.5);
+    padding: 0 10px 0 10px;
+    @include line-height (15);
+    // font-weight: bold;
+    transition: background-color .3s ease;
+
+    &:last-child {
+      margin-bottom: 50px;
+    }
+
+    &:hover{
+      background-color: $hover-bg-color;
+      border-left: 2px solid $primary-color;
+      font-weight: bold;
+    }
+
+    .drpArrow{
+     float: right;
+     padding: 10px 5px 10px 0;
+     font-weight: bolder;
+    }
+  }
+}
+}
+    
+  }
+       
+     

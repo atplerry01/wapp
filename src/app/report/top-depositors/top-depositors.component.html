@@ -1,0 +1,37 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<app-report-template 
+
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg" 
+[showSearch]="true" 
+[showBranchList]="true"
+[showDropdownMenu1]="true"
+[showPagination]="true" 
+[showPerPage]="true" 
+[showDate]="true" 
+[showExcelExport]="true" 
+[dateFormat]="'DD-MMM-YYYY'" 
+[moduleName]="'Top Depositors'" 
+[reportTitle]="'Top Depositors Report'"
+[dropdownMenu1List]="reportTypeList"  
+[dropdownMenu1SelectedCode]="reportType" 
+[reportHeaders]="reportHeaders" 
+[reportData]="topDepositors" 
+(DropdownMenu1Triggered)="onReportTypeChanged($event)"
+ (searchTriggered)="onSearch($event)" 
+ (exportExcelTriggered)="onExportToExcel()" 
+ [page]="page" 
+ [total_pages]="total_pages"  
+ [totalRecords] = "totalRecords"
+ (pageChange)="onPageChange($event)" 
+ >
+</app-report-template>
+
+
+
+
+<app-footer></app-footer>

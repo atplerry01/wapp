@@ -1,0 +1,89 @@
+.login-box{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6f72b6+0,92267f+100 */
+background: #6f72b6; /* Old browsers */
+background: -moz-linear-gradient(top, #6f72b6 0%, #92267f 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #6f72b6 0%,#92267f 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #6f72b6 0%,#92267f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6f72b6', endColorstr='#92267f',GradientType=0 ); /* IE6-9 */
+
+h1{
+    text-align: center;
+    color: #ffffff;
+    font-size: 15px;
+    padding-top: 10px;
+}
+
+ p{
+    width: 100%;
+    text-align: center;
+    padding: 30px 0px;
+}
+
+ .img-fluid{
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    display: block;
+}
+
+input, input:focus{
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid #ffffff;
+    border-radius: 0px;
+    color:#ffffff;
+    box-shadow: none;
+    padding-left: 15px;
+}
+
+input::placeholder{
+    color:#ffffff;
+    font-size: 13px;
+    padding-left: 15px;
+}
+
+
+}
+
+
+
+.login-btn{
+    background: #ffffff;
+    display: block;
+    font-size: 12px;
+    color: #92267f;
+    padding: 5px 30px;
+    border-radius: 15px;
+    font-weight: 600;
+    border: 0px;
+    margin: 0 auto;
+}
+
+
+label{
+    color: #ffffff;
+}
+
+
+.form-group .fas{
+    position: absolute;
+    color: #ffffff;
+    padding-top: 13px;
+}
+
+.p-link {
+    color: #ffffff !important;
+    text-align: center;
+}
+.subTitle{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: -20px;
+    span{
+        //padding-right: 5px;
+        font-weight: 900;
+        font-size: 18px;
+    }
+}

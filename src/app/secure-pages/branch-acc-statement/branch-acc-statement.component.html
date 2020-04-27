@@ -1,0 +1,151 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<div class="main-content">
+
+    
+
+    <div class="accst-container">
+        <div class="row card-box-shadow">
+            <div class="col-xs-12 mydatepicker">
+                <mat-form-field >
+                 <input matInput placeholder="Enter Account No" [(ngModel)]="accNo">
+                 </mat-form-field>
+              <app-my-datepicker 
+                [isDateRange]="true"
+                (date1Triggered)="DateFrom_Changed($event)"
+                (date2Triggered)="DateTo_Changed($event)"
+                >                    
+                </app-my-datepicker>
+
+                <button class="gobutton" (click)="getOpeningBalance()">Go</button>
+            </div>
+        </div>
+
+        <div id="myPrintSection" *ngIf="!isInprogress && accStatments.length>0">
+
+
+            <div class="row card-box-shadow acc-enq-statment-Info">
+                <table class="tdHeader">
+                    <tr>
+                        <td>Account Name:</td>
+                        <td class="tdVal">{{accDetail.ACCOUNTNAME}}</td>
+                        <td>Statment Period:</td>
+                        <td class="tdVal">{{selectedDateFrom}} To {{this.selectedDateTo}}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                            <td>Account No:</td>
+                            <td class="tdVal">{{accNo}}</td>
+                            <td>Currency:</td>
+                            <td class="tdVal">{{accDetail.CURRENCY}}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                                <td>Account Type:</td>
+                                <td class="tdVal">{{accDetail.ACCOUNTTYPEDESC}}</td>
+                                <td>Opening Balance:</td>
+                                <td class="tdVal">{{openingBalance  | currency:' '}}</td>
+                                <td>Closing Balance:</td>
+                                <td class="tdVal">{{ holdPrevBalance | currency:' '}}</td>
+                            </tr>
+                            <tr>
+                                    <td>Address:</td>
+                                    <td class="tdVal">{{accDetail.ADDRESS1}}</td>
+                                    <td>Available Bal:</td>
+                                    <td class="tdVal">{{ holdPrevBalance | currency:' '}}</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                        <td>Total Credit:</td>
+                                        <td class="tdVal">{{totalCredit | currency:' '}}</td>
+                                        <td>Total Debit:</td>
+                                        <td class="tdVal">{{totalDebit | currency:' '}}</td>
+                                        <td>Date Printed:</td>
+                                        <td class="tdVal">{{currentDate| date:'dd-MMM-yyyy'}}</td>
+                                    </tr>
+                                    <tr>
+                                            <td>Credit Count:</td>
+                                            <td class="tdVal">{{countCredit}}</td>
+                                            <td>Debit Count:</td>
+                                            <td class="tdVal">{{countDebit}}</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                </table>
+                <div class="hide-on-print">
+                    <div><span class="printingCost">Printing/Download Cost: {{printingCost}} </span> <span class="td-link" (click)="PrintStatement()">Print Statement</span></div>                    
+                </div>
+                    
+            </div>
+
+            <div class="row card-box-shadow">
+                <div class="col-md-12">
+                    <div class="table-responsive-vertical shadow-z-1 form-table margintop50">
+                        <table id="table" class="table table-hover table-mc-light-blue">
+                            <thead>
+                                <tr>
+                                    <th>Tran. Date</th>
+                                    <th>Details</th>
+                                    <th>Value Date</th>
+                                    <th class="align-text-right">Debit</th>
+                                    <th class="align-text-right">Credit</th>
+                                    <th class="align-text-right">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-title="Tran. Date">{{selectedDateFrom}}</td>
+                                    <td data-title="Details" colspan="4">Balance B/F</td>
+                                    <td data-title="Balance" class="align-text-right">{{openingBalance | currency:' '}}</td>
+                                </tr>
+
+                                <tr *ngFor="let stm of accStatments; let i=index;">
+                                    <td data-title="Entry Date">{{stm?.TRAN_DATE | date:'dd-MMM-yyyy'}}</td>
+                                    <td data-title="Details">{{stm?.PARTICULARS}}</td>
+                                    <td data-title="Value Date">{{stm?.VALUE_DATE | date:'dd-MMM-yyyy'}}</td>
+                                    <td data-title="Debit" class="align-text-right">{{stm?.DR | currency:' '}}</td>
+                                    <td data-title="Credit" class="align-text-right">{{stm?.CR | currency:' '}}</td>
+                                    <td data-title="Balance" class="align-text-right">{{ getCurrentBalance(i, stm?.BALANCE) | currency:' '}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="6"></td>
+                                </tr>
+
+                                <tr class="tb-footer">
+                                    <td data-title=""></td>
+                                    <td data-title="Details" colspan="2">Totals</td>
+                                    <td data-title="Debit" class="align-text-right">{{totalDebit | currency:' '}}</td>
+                                    <td data-title="Credit" class="align-text-right">{{totalCredit | currency:' '}}</td>
+                                    <td data-title="Balance" class="align-text-right">{{ holdPrevBalance | currency:' '}}</td>
+
+                                </tr>
+                                <img style="display: none;" src="http://iwema/assets/images/logo.png" />
+                            </tbody>
+                        </table>
+                       
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="spinner" *ngIf="isInprogress"></div>
+
+    <div class="card-box-shadow alignmiddle notfound" *ngIf="!isInprogress && isSearchedBefore && !accStatments.length">
+        No account statement found for specified date range!
+    </div>
+
+
+
+</div>
+
+<app-footer></app-footer>

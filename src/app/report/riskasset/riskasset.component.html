@@ -1,0 +1,107 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<div class="main-content">
+
+
+  <!-- account details section -->
+
+  <div class="card-box-shadow report-header alignmiddle">
+    Risk Assets
+
+    <div class="accesslevelLayout" *ngIf="myAccess">
+        <span [class]="myAccess?.myclass"><i class="fas fa-circle"></i><span class="name">{{myAccess?.name}}</span><span class="desc">{{myAccess?.description}}</span></span>
+    </div>
+  </div>
+
+
+  <div class="card-box-shadow searcharea">
+
+    <select [(ngModel)]="selectedBranch" (change)="getRiskAssetReport()" *ngIf="myAccess?.key!=='B'">
+      <option [ngValue]="0">Consolidated</option>
+      <!-- <option>--------- Branches ---------</option> -->
+      <option *ngFor="let brn of branches" [ngValue]="brn.branchcode">{{brn.branch}}</option>
+    </select>
+
+    <select [(ngModel)]="selectedClassification" (change)="getRiskAssetReport()" [class.error]="selectedClassification==='' || selectedClassification==='0'">
+      <option [ngValue]="'0'">--- Select Classification ---</option>
+      <option [ngValue]="'ALL'">ALL</option>
+      <option [ngValue]="'DOUBTFUL'">Doubtful</option>
+      <option [ngValue]="'LOST'">Lost</option>
+      <option [ngValue]="'SUBSTANDARD'">Sub-Standard</option>
+    </select>
+
+    <div class="lengend" *ngIf="reports?.length"><span class="substandard"><i class="fas fa-circle"></i>Sub-Standard</span><span class="doubtful"><i class="fas fa-circle"></i>Doubtful</span><span class="lost"><i class="fas fa-circle"></i>Lost</span></div>
+
+
+  </div>
+
+
+  <div class="card-box-shadow report-content">
+
+    <div class="card-box-shadow" *ngIf="reports?.length">
+      <div class="table-responsive-vertical shadow-z-1 form-table">
+        <table id="table" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Account #</th>
+              <th>Account Name</th>
+              <th>Loan Date</th>
+              <th>Loan Type</th>
+              <!-- <th>Classification</th> -->
+              <th *ngIf="selectedBranch===0">Branch</th>
+              <th class="align-text-right">Loan Amount</th>
+              <th class="align-text-right">Balance</th>
+              <th class="align-text-right">Overdue Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let rep of reports; let i=index" [ngClass]="{'doubtful-color': rep?.loan_classification==='DOUBTFUL', 'lost-color': rep?.loan_classification==='LOST','substandard-color': rep?.loan_classification==='SUBSTANDARD'}">
+              <td data-title="#">{{i+1}}</td>
+              <td data-title="Account #">{{rep?.account_number}}</td>
+              <td data-title="Account Name">{{rep?.account_name}}</td>
+              <td data-title="Loan Date">{{rep?.loan_date}}</td>
+              <td data-title="Loan Type">{{rep?.loan_type}}</td>
+              <!-- <td data-title="Classification">{{rep?.loan_classification}}</td> -->
+              <td data-title="Branch" *ngIf="selectedBranch===0">{{rep?.BranchName}}</td>
+              <td data-title="Loan Amount" class="align-text-right">{{rep?.loan_amount | currency:' '}}</td>
+              <td data-title="Balance" class="align-text-right">{{rep?.outstanding_balance | currency:' '}}</td>
+              <td data-title="Overdue Amount" class="align-text-right">{{rep?.overdue_amount| currency:' '}}</td>
+            </tr>
+
+            <tr class="tb-footer">
+              <td data-title=""></td>
+              <td data-title=""></td>
+              <td data-title=""></td>
+              <td data-title="" *ngIf="selectedBranch===0"></td>
+              <!-- <td data-title=""></td> -->
+              <td data-title=""></td>
+              <td data-title=""></td>
+              <td data-title="Total Loan" class="align-text-right">{{totalLoan | currency:' '}}</td>
+              <td data-title="Total Balance" class="align-text-right">{{totalBalance | currency:' '}}</td>
+              <td data-title="Total Overdue" class="align-text-right">{{totalOverdue | currency:' '}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="spinner" *ngIf="isInprogress"></div>
+
+  <div class="card-box-shadow alignmiddle notfound" *ngIf="!isInprogress && isSearchedBefore && !reports?.length">
+    Report not available for this search criteria!
+  </div>
+
+  <!-- account detail section end here -->
+
+</div>
+
+
+<app-footer></app-footer>

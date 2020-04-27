@@ -1,0 +1,76 @@
+<div class="side-page" [style.width.%]="mySize">
+
+ 
+        <!-- birthday form -->
+
+<div>
+        <div class="birthday-form-section" *ngIf="showBirthdayForm" [style.width.%]="mySize">
+            <!-- <div class="birthday-header-container"> -->
+
+            <div class="birthday-header-container">
+
+                    <h4>{{selectedBirthday.name}} -
+                        <span>{{selectedBirthday?.email}}</span>
+                    </h4>
+                    <!-- <h5> {{selectedBirthday.dept}}</h5> -->
+                    <span class="close-form" (click)="closeBirthdayForm()">
+                            <i class="fas fa-times"></i>
+                    </span>
+               
+            </div>
+
+          
+            <form (ngSubmit)="onSendEmail()" #emailForm="ngForm" novalidate class="marginright35">
+                <div class="form-elements">
+                    <label class="label" for="subject">Subject:</label>
+                    <input class="textbox" type="text" placeholder="Enter birthday title" id="subject" [disabled]="isInprogress" required [(ngModel)]="emailModel.subject"
+                        name="subject" #subjectModel="ngModel" autofocus />
+                    <div class="error" *ngIf="!subjectModel.valid && (subjectModel.dirty || subjectModel.touched)">Please write the subject</div>
+                </div>
+                <div class="form-elements">
+                    <label class="label" for="body">Message:</label>
+                    <textarea type="text" rows="10" cols="52" placeholder="Enter birthday message" [disabled]="isInprogress" required [(ngModel)]="emailModel.body"
+                        name="body" #bodyModel="ngModel">
+                        </textarea>
+                    <div class="error" *ngIf="!bodyModel.valid && (bodyModel.dirty || bodyModel.touched)">Please write the message</div>
+                </div>
+                <div class="form-elements">
+                    <button class="mybutton" type="submit" id="submit" [disabled]="!emailForm.form.valid || isInprogress">Send</button>
+                </div>
+            </form>
+            <div class="title2 b_titleColor">Whose Birthday Today?</div>
+        </div>
+
+        <!-- list of all birthday celebrants -->
+        <div class="title static-birthday-header" [hidden]="showBirthdayForm">Whose Birthday Today?</div>
+        <div class="bottommargin100" [class.topmargin550]="showBirthdayForm">
+            <div class="birthday-container margintop50">
+
+                <!-- birthday code start here -->
+                <!-- birthday code start here -->
+                <!-- <div class="title " [hidden]="showBirthdayForm">Whose Birthday Today?</div> -->
+                <div class="birthday" *ngFor="let bday of birthdays" (click)="onBirthdaySelected(bday)">
+                    
+                    <div class="birthday-detail"  data-tool-tip="Send email">
+                       {{bday.name}}
+                        <h6>{{bday.department}} {{bday?.mobile_phone? - bday?.mobile_phone: ''}}</h6>
+                        <span><i class="far fa-envelope"></i></span>                        
+                    </div>
+                </div>
+
+            </div>
+            <!-- birthday code ends here -->
+        </div>
+
+
+    </div>
+
+  
+
+
+
+    <div class="stictfooter" [style.width.%]="mySize">
+        <button class="mybutton" type="button" (click)="utilityService.goBack()">
+           Close</button>
+    </div>
+</div>

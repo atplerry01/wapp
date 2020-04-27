@@ -1,0 +1,125 @@
+<div class="side-page">
+    <div class="accst-container">
+        <div class="row card-box-shadow">
+            <div class="col-xs-12 mydatepicker">
+              <app-my-datepicker 
+                [isDateRange]="true"
+                (date1Triggered)="DateFrom_Changed($event)"
+                (date2Triggered)="DateTo_Changed($event)"
+                >                    
+                </app-my-datepicker>
+
+                <button class="gobutton" (click)="getOpeningBalance()">Go</button>
+            </div>
+        </div>
+
+        <div id="myPrintSection">
+
+
+            <div class="row card-box-shadow acc-enq-statment-Info">
+                <div class="col-sm-6">
+                    <div>
+                        <h5>WEMA BANK PLC</h5>
+                        <h5>{{accountFirst?.BRANCH}} ({{accountFirst?.BRANCHCODE}})</h5>
+                        <!-- <h5>ALAUSA, IKEJA, LAGOS</h5> -->
+                    </div>
+
+                    <div class="address">
+                        <h5>{{accountFirst?.ACCOUNTNAME}}</h5>
+                        <h5>{{accountFirst?.ADDRESS1}},&nbsp;{{accountFirst?.ADDRESS2}}</h5>
+                        <H5>{{accountFirst?.CITY}},&nbsp;{{accountFirst?.STATE}}</H5>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 printright" *ngIf="!isInprogress && accStatments.length>0">
+                    <div>
+                        <h5>{{selectedDateFrom}} To {{selectedDateTo}}</h5>
+                        <h5>{{accountFirst?.ACCOUNTNUMBER}}</h5>
+                        <h5>{{accountFirst?.ACCOUNTTYPEDESC}}</h5>
+                    </div>
+
+                    <div class="address">
+                        <h5>Report By: &nbsp;
+                            <span>{{currentUser.displayName}}</span>
+                        </h5>
+                        <h5>Staff No: &nbsp;
+                            <span>0{{currentUser.company}}</span>
+                        </h5>
+                        <h5>Branch: &nbsp;
+                            <span>{{myBranchCode}}</span>
+                        </h5>
+                    </div>
+                    <!-- Temporaly disable printing till advised otherwise -->
+                    <div *ngIf="currentUser.displayName==='Ishmael Gyaban'" class="td-link hide-on-print" (click)="PrintStatement()">Print Statement</div>
+                </div>
+            </div>
+
+            <div class="row card-box-shadow" *ngIf="!isInprogress && accStatments.length>0">
+                <div class="col-md-12">
+                    <div class="table-responsive-vertical shadow-z-1 form-table margintop50">
+                        <table id="table" class="table table-hover table-mc-light-blue">
+                            <thead>
+                                <tr>
+                                    <th>Tran. Date</th>
+                                    <th>Details</th>
+                                    <th>Value Date</th>
+                                    <th class="align-text-right">Debit</th>
+                                    <th class="align-text-right">Credit</th>
+                                    <th class="align-text-right">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-title="Tran. Date">{{selectedDateFrom}}</td>
+                                    <td data-title="Details" colspan="4">Balance B/F</td>
+                                    <td data-title="Balance" class="align-text-right">{{openingBalance | currency:' '}}</td>
+                                </tr>
+
+                                <tr *ngFor="let stm of accStatments; let i=index;">
+                                    <td data-title="Entry Date">{{stm?.TRAN_DATE | date:'dd-MMM-yyyy'}}</td>
+                                    <td data-title="Details">{{stm?.PARTICULARS}}</td>
+                                    <td data-title="Value Date">{{stm?.VALUE_DATE | date:'dd-MMM-yyyy'}}</td>
+                                    <td data-title="Debit" class="align-text-right">{{stm?.DR | currency:' '}}</td>
+                                    <td data-title="Credit" class="align-text-right">{{stm?.CR | currency:' '}}</td>
+                                    <td data-title="Balance" class="align-text-right">{{ getCurrentBalance(i, stm?.BALANCE) | currency:' '}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="6"></td>
+                                </tr>
+
+                                <tr class="tb-footer">
+                                    <td data-title=""></td>
+                                    <td data-title="Details" colspan="2">Totals</td>
+                                    <td data-title="Debit" class="align-text-right">{{totalDebit | currency:' '}}</td>
+                                    <td data-title="Credit" class="align-text-right">{{totalCredit | currency:' '}}</td>
+                                    <td data-title="Balance" class="align-text-right">{{ holdPrevBalance | currency:' '}}</td>
+
+                                </tr>
+                                <img style="display: none;" src="http://iwema/assets/images/logo.png" />
+                            </tbody>
+                        </table>
+                       
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="spinner" *ngIf="isInprogress"></div>
+
+    <div class="card-box-shadow alignmiddle notfound" *ngIf="!isInprogress && isSearchedBefore && !accStatments.length">
+        No account statement found for specified date range!
+    </div>
+
+
+
+    <!-- <div class="margintop50">.</div> -->
+
+    <div class="stictfooter">
+        <button class="mybutton" type="button" (click)="closePage()">
+            Close</button>
+    </div>
+</div>

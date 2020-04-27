@@ -1,0 +1,35 @@
+<app-header> </app-header>
+<app-menu></app-menu>
+
+ <app-report-template
+  [isInprogress]="isInprogress"
+  [showNotFoundMsg]="showNotFoundMsg"
+  [showSearch]="true"
+
+  [showDropdownMenu1]="true"
+  [dropdownMenu1List]="processTypes"
+  (DropdownMenu1Triggered)="onProcessTypeChange($event)" 
+  [dropdownMenu1SelectedCode]="selectedProcessTypeCode"
+
+  [showDate]="true"
+  [isDateRange]="false"
+  [searchText1_Placeholder]="'Account number'"
+  (searchTriggered)="onSearch($event)"
+  [searchText2_Placeholder]="'Transaction ID'"
+  (searchTriggered)="onSearch($event)"
+  [dateFormat]="'DD-MMM-YYYY'"
+  [moduleName]="'Audit Portal'"
+  [reportTitle]="'Audit Portal'"
+>
+</app-report-template>
+
+<div class="formContainer card-box-shadow">
+  <div class="userData">
+    <h2 style="color:#000">Account Information</h2>
+
+    <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit()" [submitLabel]="submitLabel">            
+    </app-form-template>    
+  </div>
+</div>
+
+<app-footer></app-footer>

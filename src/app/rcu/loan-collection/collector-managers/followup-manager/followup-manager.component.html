@@ -1,0 +1,212 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<div class="pagelink">
+  <div>
+      <a class="nav-link" (click)="processNewLoans()" [routerLink]="['/rcu/loan-collection/followup-manager']"> Process New Case </a>
+  </div>
+</div>
+
+<app-report-template 
+[showPagination]="true"
+[showPerPage]="true"
+[isRowSelectable]="true"
+[showDropdownMenu1]="true"
+[dropdownMenu1List]="caseTypes"
+(DropdownMenu1Triggered)="onCaseTypeChange($event)" 
+[dropdownMenu1SelectedCode]="selectedCaseCode"
+(rowSelectionTriggered)="onRowSelected($event)"
+[searchText1_Placeholder]="'Loan Account Number'"
+[showAdd] = "onAgentPage === true"
+(AddTriggered)="onAddNewAgent()"
+[isInprogress]="isInprogress"
+[showNotFoundMsg]="showNotFoundMsg" 
+[showSearch]="true"
+[showDate]="true"
+[isDateRange]="true"
+[dateFormat]="'YYYY-MM-DD'" 
+[moduleName]="'RC-Loan Followup Manager'"
+[reportTitle]="reportTitle"
+[reportHeaders]="reportHeaders" 
+[reportData]="reportData"
+(searchTriggered)="onSearch($event)"
+[showEdit]="showEscalationButton === true || showAgentReassignment === true || showFlagAssignButton === true"
+(editRowTriggered)="onMenuEdit($event)" 
+[showDelete]="showCloseButton === true"
+(deleteRowTriggered)="onSubMenuDelete($event)"
+[page]="page" 
+[per_page]="per_page" 
+[total_pages]="total_pages" 
+[totalRecords]="totalRecords" 
+(pageChange)="onPageChange($event)"
+>
+</app-report-template>
+
+<!-- model box section -->
+<div class="pop" *ngIf="showForm">
+    <div class="modal">
+  
+      <div class="modal__inner" style="width: 75%">
+        
+        <div *ngIf="currentAction !== 'AddAgent'">
+            <ul>
+                <li>
+                  <ul>
+                    <li><span (click)="loanDetail()">Loan Details</span></li>
+                    <li><span (click)="followUpDetail()">Followup Detail</span></li>
+                    <li><span (click)="collectorHistory()">Collector History</span></li>
+                    <li><span (click)="contactHistory()">Contact History</span></li>
+                    <li><span (click)="customerDetail()">Customer Detail</span></li>
+                  </ul>
+                </li>
+              </ul>
+        </div>
+
+        <div *ngIf="currentModalTab === 'caseReAssignment'">
+        
+          <div class="form-header" style="font-size: 18px">{{formTitle}}</div>
+        
+          <div class="myform">
+            <div class="spinner" *ngIf="isInprogress"></div>
+        
+            <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+              [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+            </app-form-template>
+        
+          </div>
+        </div>
+        
+        <div *ngIf="currentModalTab === 'escalate'">
+        
+          <div class="form-header" style="font-size: 18px">{{formTitle}}</div>
+        
+          <div class="myform">
+            <div class="spinner" *ngIf="isInprogress"></div>
+        
+            <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+              [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+            </app-form-template>
+        
+          </div>
+        </div>
+
+        <div *ngIf="currentModalTab === 'closeCase'">
+        
+          <div class="form-header" style="font-size: 18px">{{formTitle}}</div>
+        
+          <div class="myform">
+            <div class="spinner" *ngIf="isInprogress"></div>
+        
+            <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+              [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+            </app-form-template>
+        
+          </div>
+        </div>
+
+        <div *ngIf="currentModalTab === 'loanDetail'">
+        
+          <div class="form-header" style="font-size: 18px">{{formTitle}}</div>
+        
+          <div class="myform">
+            <div class="spinner" *ngIf="isInprogress"></div>
+        
+            <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+              [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+            </app-form-template>
+        
+          </div>
+        </div>
+  
+        <div *ngIf="currentModalTab === 'followUpDetail'">
+            
+            <div class="form-header" style="font-size: 18px">{{formTitle}}</div>
+            
+            <div *ngIf="showFollowUpLists">
+                <app-report-template 
+                [reportTitle]="'FollowUp Details'"
+                [showAccess]="false"
+                [isRowSelectable]="true"
+                [isInprogress]="isInprogress"
+                [showNotFoundMsg]="showNotFoundMsg" 
+                [moduleName]="'RC-Loan Followup Manager'"
+                [reportHeaders]="followUpHeader" 
+                [reportData]="caseFollowUpDetails">
+              </app-report-template>
+            </div>
+            
+            <div class="myform">
+              <div class="spinner" *ngIf="isInprogress"></div>
+          
+              <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+                [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+              </app-form-template>
+          
+            </div>
+        </div>
+
+        <div *ngIf="currentModalTab === 'collectorHistory'">
+          
+          <div>
+            <app-report-template 
+            [reportTitle]="'Collector History'"
+            [showAccess]="false"
+            [isRowSelectable]="true"
+            [isInprogress]="isInprogress"
+            [showNotFoundMsg]="showNotFoundMsg" 
+            [moduleName]="'RC-Loan Followup Manager'"
+            [reportHeaders]="collectorHeader" 
+            [reportData]="actionLogs">
+            </app-report-template>
+          </div>
+          
+            <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+              [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+            </app-form-template>
+        </div>
+  
+        <div *ngIf="currentModalTab === 'callHistory'">
+          
+          
+          <div>
+            <app-report-template 
+            [reportTitle]="'Call Center History'"
+            [showAccess]="false"
+            [isRowSelectable]="true"
+            [isInprogress]="isInprogress"
+            [showNotFoundMsg]="showNotFoundMsg" 
+            [moduleName]="'RC-Loan Followup Manager'"
+            [reportHeaders]="callCenterHeader" 
+            [reportData]="caseCallHistory">
+            </app-report-template>
+          </div>
+
+          <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+            [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+          </app-form-template>
+        </div>
+
+        <div *ngIf="currentModalTab === 'processNewCase'">
+          <div>
+            <app-report-template 
+            [reportTitle]="'Call Center History'"
+            [showAccess]="false"
+            [isRowSelectable]="true"
+            [isInprogress]="isInprogress"
+            [showNotFoundMsg]="showNotFoundMsg" 
+            [moduleName]="'RC-Loan Followup Manager'"
+            [reportHeaders]="callCenterHeader" 
+            [reportData]="caseCallHistory">
+            </app-report-template>
+          </div>
+
+          <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+            [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+          </app-form-template>
+        </div>
+
+      </div>
+    </div>
+  
+  </div>

@@ -1,0 +1,61 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<app-report-template 
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg"
+[isRowSelectable]="true"
+[isCollapseOnSelect] = "isCollapseOnSelect" 
+[disableMultipleCollapseOnSelectToggle] = "false"
+[showDropdownFilter]="true" 
+[dropdownFilter_Placeholder]="'Filter by Brand'"
+[filterDropdownList] = "AllBrands"
+(filterDropdownTriggered) = "onFilterDropdownChange($event)" 
+
+[showDropdownFilter2]="filteredItemSelected !== ''" 
+[dropdownFilter_Placeholder2]="'Filter by Type'"
+[filterDropdownDefaultValue2] = "'ALL'"
+[filterDropdownList2] = "AllTypes"
+(filterDropdownTriggered2) = "onFilterDropdownChange2($event)"    
+
+[moduleName]="'Asset Disposal Bids'" 
+[reportTitle]="'Asset Disposal Bids Report'"
+[reportHeaders]="tableHeaders" 
+[reportData]="carbidsFinal"
+(rowSelectionTriggered)="onRowSelected($event)"
+
+[showCloseIcon] = "showCloseIcon"
+(closeTriggered)="closeBidders()"
+
+[showExcelExport]="true" 
+(exportExcelTriggered)="onExportToExcel()"
+ >
+</app-report-template>
+
+<div *ngIf="bidders?.length>0 && isCollapseOnSelect">
+        <app-report-template 
+        [isInprogress]="isInprogress" 
+        [showNotFoundMsg]="showNotFoundMsg"         
+        [showAccess] = "false"
+        [moduleName]="'Asset Disposal Bids'" 
+        [reportTitle]="'Bidders'"
+        [reportHeaders]="tableSubHeaders" 
+        [reportData]="bidders" 
+        [showExcelExport]="true" 
+        (exportExcelTriggered)="onExportToExcelBidders()" 
+        [showPagination]="true" 
+        [page]="page" 
+        [total_pages]="total_pages"  
+        [totalRecords] = "totalRecords"
+        (pageChange)="onPageChange($event)" 
+        >
+      </app-report-template>
+      </div>
+
+
+
+<app-footer></app-footer>
+
+
+

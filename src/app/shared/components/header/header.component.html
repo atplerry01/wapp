@@ -1,0 +1,29 @@
+<header class="header-bg">
+    <div class="container top-nav">
+        <span>{{now | date:'EEEE, MMMM d, y, h:mm a zzz'}}</span>
+      
+        <span class="logout" (click)="logout()">Logout <i class="fas fa-sign-out-alt"></i></span>
+        <span class="span-greeting">Good {{greetings}} {{currentUser}}!</span>
+    </div>
+</header>
+
+ <!-- /Logo Area -->
+
+<section class="logo-header">
+    <div class="container top-nav">
+        <div class="row">
+            <div class="col-sm-4 mousepointer" (click)="gohome()">
+                <img src="assets/images/wema-logo.png" class="img-fluid logo-img">
+            </div>
+            <div class="col-sm-8">
+                <ul class="logo-menu">
+                    <li><a>Employee Connect  <i class="fas fa-users"></i></a></li>
+                    <li><a>Customer Service  <i class="fas fa-headphones"></i></a></li>
+                    <li><a [routerLink]="['/sc/branchnetwork']">Branch Network  <i class="fas fa-cogs"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- /Logo Area -->

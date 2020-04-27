@@ -1,0 +1,85 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<app-report-template 
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg"
+[isRowSelectable]="true"
+[showAccess] = "false"
+[isCollapseOnSelect] = "isCollapseOnSelect" 
+[disableMultipleCollapseOnSelectToggle] = "false"
+[showDropdownFilter]="true" 
+[dropdownFilter_Placeholder]="'Filter by Brand'"
+[filterDropdownList] = "AllBrands"
+(filterDropdownTriggered) = "onFilterDropdownChange($event)" 
+
+[showDropdownFilter2]="filteredItemSelected !== ''" 
+[dropdownFilter_Placeholder2]="'Filter by Type'"
+[filterDropdownDefaultValue2] = "'ALL'"
+[filterDropdownList2] = "AllTypes"
+(filterDropdownTriggered2) = "onFilterDropdownChange2($event)"    
+
+[moduleName]="'Asset Disposal Bid'" 
+[reportTitle]="'Asset Disposal Bid Portal'"
+[reportHeaders]="tableHeaders" 
+[reportData]="carbidsFinal"
+(rowSelectionTriggered)="onRowSelected($event)"
+(closeTriggered)="closeDetail()"
+ >
+</app-report-template>
+
+<div *ngIf="showForm" class="formContainer card-box-shadow">
+  <div style="float:right; margin: 0 5px; cursor:pointer; font-weight:bolder;">
+    <i class="fas fa-times" (click)="closeDetail()"></i>
+  </div>
+  <div class="userData">
+    <div>
+      <span class="label">Staff Name:</span>
+      <span class="prop">{{currentUser?.displayName}}</span>
+    </div>
+    <div>
+      <span class="label">Grade:</span>
+      <span class="prop">{{currentUser?.grade}}</span>
+    </div>
+    <div>
+      <span class="label">Branch/Dept.:</span>
+      <span class="prop">{{currentUser?.branch}}/{{currentUser?.department}}</span>
+    </div>
+    <div>
+      <span class="label">Staff Number:</span>
+      <span class="prop">{{currentUser?.company}}</span>
+    </div>
+
+  </div>
+
+
+  <div>
+    <img src="{{selectedAsset?.PHOTO}}" width="100%" alt="No Photo" />
+  </div>
+
+  <div *ngIf="bidopened">
+
+
+    <div class="margin10">
+      <span>Bid Price:</span>
+      <input type="text" [(ngModel)]="bidAmount" />
+      <a mat-raised-button (click)="submitBid()">Bid</a>
+    </div>
+
+    <div class="margin10">
+      <label>
+        <input type="checkbox" [(ngModel)]="isAcknowledge" />
+        <strong> Acknowledge That I Have Inspected This Vehicle And Read All Terms And Conditions</strong> on the form
+
+      </label>
+    </div>
+
+  </div>
+
+</div>
+
+<app-footer></app-footer>
+
+
+

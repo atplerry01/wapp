@@ -1,0 +1,67 @@
+@import "../../../assets/sass/input";
+
+
+.mydatepicker{
+  padding: 5px 20px;
+}
+
+.mydatepickerSeperate {
+  margin: 0 5px;
+}
+
+.gobutton{
+  border: 0; // 2px solid rgba(230, 222, 222, 0.568);
+  padding: 5px;
+  border-radius: 50%;
+  color: black;
+  background-color: #fff;
+  box-shadow: 3px 5px 8px rgba(0,0,0,0.5);
+  outline: none;
+
+  &:hover{
+    background-color: rgba(230, 222, 222, 0.568);
+  }
+}
+
+
+.accst-container{
+margin-bottom: 50px;
+}
+
+.acc-enq-statment-Info{
+    padding: 10px;
+   
+    div{
+    h5{
+      @include line-height(6);
+      @include font-size(5.5);
+      span{
+        font-weight: bold;
+      }
+    }
+    }
+    .address{
+       margin-top: 20px;
+    }
+
+
+  }
+
+
+  .tdHeader{
+    width: 100%;
+    margin: 0 10px;
+    @include font-size(6);
+    .tdVal{
+      @include font-size(5);
+      font-weight: bold;
+    }
+  }
+
+  .printingCost{
+    text-decoration: none !important;
+    margin: 10px 50px;
+    color: rgb(201, 32, 32);
+    font-weight: bold;
+    @include font-size(6);
+  }

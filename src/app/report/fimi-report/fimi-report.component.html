@@ -1,0 +1,33 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<app-report-template 
+
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg" 
+[showSearch]="true" 
+[isSortable]= "true"
+[currentSortPropertyName]="'tranid'"
+[currentSortOrder] = "'desc'"
+(sortTriggered) = "onSort($event)"
+[showDropdownMenu1]="true"
+[dropdownMenu1List]="reportNameList"  
+[dropdownMenu1SelectedCode]="reportName" 
+(DropdownMenu1Triggered)="onReportNameChanged($event)"
+[showDate]="true" 
+[isDateRange]="true" 
+[showExcelExport]="true" 
+[searchText1_Placeholder]="'Account Number'"
+[dateFormat]="'YYYY-MM-DD'" 
+[moduleName]="'FIMI Report'" 
+[reportTitle]="reportTitle"
+[reportHeaders]="reportHeaders" 
+[reportData]="reportData"
+(searchTriggered)="onSearch($event)"
+[showExcelExport]="true"
+(exportExcelTriggered)="onExportToExcel()" 
+ >
+</app-report-template>
+
+<app-footer></app-footer>

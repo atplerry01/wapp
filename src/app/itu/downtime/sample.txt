@@ -1,0 +1,52 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<div class="pagelink">
+  <div>
+      <!-- <a class="nav-link" [routerLink]="['/itu/reports/down-time']"> View Downtime Report</a> -->
+  </div>
+</div>
+
+
+<div class="formContainer card-box-shadow">
+  <div style="padding: '10px 0 10px';">
+    <h2>Create a New Request</h2>
+  </div>
+  <div class="setFormMargin">
+
+   
+    <div style="padding-left: 15px; margin-bottom: 10px;">
+      <div>
+        <strong style="color:#000">Allowed Extension: pdf</strong>
+        <div class="row">
+          <div>
+            <input type="file" (change)="onFileSelected($event)" />
+            <!-- <button type="button" (click)="onUpload()">Upload</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <app-form-template [model]="model" 
+    [fields]="fields" 
+    (submitTriggered)="submit()" 
+    (closeTriggered)="cancel()"
+      [submitLabel]="submitLabel">
+    </app-form-template> -->
+  </div>
+<!-- 
+  <app-report-template 
+    [isInprogress]="isInprogress" 
+    [showNotFoundMsg]="showNotFoundMsg"
+    [moduleName]="'SR-Statement Profiling'" 
+    [showDate]="true"
+    [isDateRange]="true"
+    [reportTitle]="'Request Logs'" 
+    [reportHeaders]="reportHeader"
+    [reportData]="reportData" 
+    >
+  </app-report-template> -->
+
+</div>

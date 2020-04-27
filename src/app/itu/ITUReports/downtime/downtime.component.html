@@ -1,0 +1,34 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<div class="pagelink">
+  <div>
+      <a class="nav-link" [routerLink]="['/itu/downtime']"> Add New Downtime</a>
+  </div>
+</div>
+
+<app-report-template
+  [showPagination]="true"
+  [showPerPage]="true"
+  [isRowSelectable]="true"
+  [showExcelExport]="true"
+  [searchText1_Placeholder]="'Search By Issues'"
+  [isInprogress]="isInprogress"
+  [showNotFoundMsg]="showNotFoundMsg"
+  [showSearch]="true"
+  [showDate]="true"
+  [isDateRange]="true"
+  [dateFormat]="'YYYY-MM-DD'"
+  [moduleName]="'Service Downtime'"
+  [reportTitle]="'Downtime Report'"
+  [reportHeaders]="reportHeader"
+  [reportData]="reportData"
+  (searchTriggered)="onSearch($event)"
+  [page]="page"
+  [per_page]="per_page"
+  [total_pages]="total_pages"
+  [totalRecords]="totalRecords"
+  (rowSelectionTriggered)="onRowSelected($event)"
+>
+</app-report-template>

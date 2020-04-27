@@ -1,0 +1,32 @@
+.footer-img{
+    display: block;
+   // margin-bottom: -20px;
+    width: 40px;
+    height: 40px;
+}
+
+.wema-footer{
+    background: #565190;
+    padding: 20px 0px 10px 0px;
+}
+
+
+
+.wema-f-list{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+
+    li{
+        display: inline-block;
+        padding: 0px 40px;
+        line-height: 1rem;  
+
+        a{
+            color: #ffffff;
+            font-size: 10px;
+        }
+    }
+
+   
+}

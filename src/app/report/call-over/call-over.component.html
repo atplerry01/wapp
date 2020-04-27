@@ -1,0 +1,34 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<app-report-template 
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg" 
+[showSearch]="true" 
+[showPagination]="true" 
+[showPerPage]="true" 
+[showDate]="true" 
+[showBranchList]="true" 
+[showExcelExport]="true"  
+[showTotal]="true"
+[showDropdownFilter]="showFilterDropdownList && myAccess?.key!=='S'"
+[filterDropdownSelectedCode] = "''"
+[filterDropdownDefaultValue] = "'All Tellers'"
+[filterDropdownList]="tellers"
+(filterDropdownTriggered)="filterTellersDropdownChanged($event)"
+[moduleName]="'Callover'"
+[reportTitle]="'Wema Call Over Report'"
+[reportHeaders]="reportHeaders" 
+[reportData]="accounts" 
+(searchTriggered)="onSearch($event)" 
+(exportExcelTriggered)="ExportDataToExcel()"
+ [page]="page" 
+ [total_pages]="total_pages"  
+ (pageChange)="onPageChange($event)"
+ (myAccessTriggered)="getUserAccess($event)" 
+ >
+</app-report-template>
+
+
+<app-footer></app-footer>

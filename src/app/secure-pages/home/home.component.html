@@ -1,0 +1,347 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<!-- page content start here ... -->
+
+<div class="container">
+
+  <div class="row topsec">
+
+    <div class="col-md-9 white-bg">
+      <div id="iconsholder">
+
+        <div class="nicon" *ngFor="let tp of top6Links;" (click)="goto('N', tp.name, tp.url)">
+
+          <a>
+            <img class="img-nicon" alt="The Square" src="assets/images/{{tp.imgurl}}">{{tp.name}}</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-3 white-bg removeSpaces">
+
+      <div *ngFor="let sd of topSideLinks;" class="{{sd.classname}}" (click)="goto('N', sd.name, sd.url)">
+        <img src="assets/images/{{sd.imgurl}}" class="i7">
+        <a>{{sd.name}}</a>
+      </div>
+
+
+      <!-- <div class="kss" (click)="goto('N', '', 'http://172.27.4.21/kss')">
+        <img src="assets/images/s-portal.png" class="i7">
+        <a>KSS PORTAL</a>
+      </div> -->
+
+    </div>
+  </div>
+
+
+
+
+  <div class="row tab-bar">
+
+
+    <div class="nav-item col-4">
+      <a class="nav-link" *ngIf="birthdays?.length" [routerLink]="['/sc/home/events/1']">Who's Birthday is it today?
+        <span>{{birthdays?.length}}</span>
+        <img alt="open an account" src="assets/images/account.png">
+        <!-- <div *ngFor="let bday of birthdays">
+          {{bday.name}} - {{bday.department}} 
+      </div>  -->
+        <i>Click to view {{birthdays?.length}} people celebrating their birthday today</i>
+      </a>
+      <a class="nav-link" *ngIf="!birthdays?.length">No Birthday for today?
+        <img alt="open an account" src="assets/images/account.png">
+      </a>
+    </div>
+    <div class="nav-item col-4">
+      <a class="nav-link" [routerLink]="['/sc/who']">Who is who?
+        <img alt="Who is who" src="assets/images/who.png">
+      </a>
+    </div>
+    <div class="nav-item col-4">
+      <a class="nav-link" (click)="goto('N', '', 'http://172.27.4.209/')">E-library
+        <img alt="E-library" src="assets/images/library.png">
+      </a>
+    </div>
+
+
+  </div>
+
+  <div class="row white-bg lastsec">
+
+    <div class="col-md-7">
+
+      <div class="row">
+
+        <div class="col-4">
+          <h3 class="new-bg">What's New</h3>
+          <!-- <img alt="Alat" class="img-fluid" src="assets/images/alat.png"> -->
+          <slideshow [height]="'150px'" [minHeight]="'150px'" [autoPlay]="true" [showArrows]="false"
+            [imageUrls]="slides" [lazyLoad]="slides?.length > 1" [autoPlayWaitForLazyLoad]="true">
+          </slideshow>
+        </div>
+        <div class="col-8">
+
+          <strong class="sp">{{video?.title}}</strong>
+          <video *ngIf="video" width="350" poster="assets/video/{{video?.posterImg}}" controls
+            controlsList="nodownload">
+            <source src="assets/video/{{video?.filename}}" type="video/mp4">
+            <img src="assets/images/video.png" class="sp">
+          </video>
+
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-5">
+
+      <h3 class="fav-bg">My Favorite Links</h3>
+      <div class="row">
+        <div class="col-6">
+          <div class="spinner" *ngIf="FavIsInprogress"></div>
+          <ul class="wema-list">
+            <li *ngFor="let fav of favouriteLinks | slice:0:6"
+              (click)="goto(fav?.submenu_display_inside,fav?.submenu_id, fav?.Favourite_Link)">{{fav?.FavouriteName}}
+            </li>
+          </ul>
+        </div>
+        <div class="col-6">
+          <ul class="wema-list" *ngIf="favouriteLinks.length>6">
+            <li *ngFor="let fav of favouriteLinks | slice:6:12"
+              (click)="goto(fav?.submenu_display_inside, fav?.submenu_id, fav?.Favourite_Link)">{{fav?.FavouriteName}}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+</div>
+
+
+<!-- page content end here... -->
+
+
+<app-footer></app-footer>
+
+<!-- use this in the page where you want to slide other pages in -->
+<div>
+  <router-outlet></router-outlet>
+</div>
+
+
+
+
+<!-- model box section -->
+<div class="pop" *ngIf="showDeclarationForm">
+  <div class="modal">
+    <div class="modal__inner" style="width:80%; max-height: 90%; overflow-y: auto;">
+
+      <div class="spinner" *ngIf="isInprogress"></div>
+
+      <!-- content start here -->
+
+      <div class="declarationform">
+        <p> <strong>DECLARATION OF CONFIDENTIALITY</strong> </p>
+        <p>TO: WEMA BANK PLC</p>
+
+        <p>
+          I, <strong>{{currentUser?.displayName | uppercase}}</strong> hereby acknowledge that information/data
+          concerning the Bank, its
+          directors, shareholders, customers, business and affairs coming into my knowledge/possession in the course of
+          my
+          employment with Wema Bank Plc are confidential. I undertake that I will at all times, both during and after
+          such employment in relation to any third party including but not limited to the bank’s
+          competitors (i.e. banks and other financial institution as defined by BOFIA 1991 and as amended from time to
+          time):
+        </p>
+        <ol>
+          <li>Treat and safeguard all information/data as strictly private and confidential and exercise all reasonable
+            care
+            to preserve the confidentiality of same and prevent the unauthorized access to same by unauthorized persons
+            through
+            failure to exercise due care and diligence or through negligence or recklessness;</li>
+          <li>Only use the information/data for the purpose of properly carrying out my duty with the Bank;</li>
+          <li>Will not at any time, without the prior consent of the Bank, discuss, disclose or reveal the
+            information/data
+            with or to any other person or party whatsoever other than the bank’s employees and or revelant customer and
+            strictly on a need to know basis and upon instruction by my senior officer/the bank;</li>
+          <li>Will indemnify the Bank against all claims, expenses, damages, liabilities and losses
+            which may be occasioned by reason of the breach of this undertaking;</li>
+          <li>Acknowledge that all records in any medium (whether written, electronic or otherwise) including accounts,
+            documents and other papers including private notes concerning the information/data which is acquired by me
+            in the course of my employment are the property of the Bank and I shall use them only for the purpose
+            authorized
+            by the Bank and return them to the Bank on demand at any time and without demand on the termination of
+            the contract of employment;</li>
+          <li>Acknowledge that disciplinary action/damages alone would not be adequate remedy for any breach of this
+            undertaking and that the Bank shall also be entitled to the remedies of injunction, specific performance or
+            other equitable relief. Such remedy shall be in addition to and not in lieu of or a limitation of other
+            remedies available to the Bank at law or in equity.</li>
+        </ol>
+
+        <div>
+          <div>Dated this <strong>{{currentdate?.day}}</strong> day of <strong>{{currentdate?.month}}</strong> year
+            <strong>{{currentdate?.year}}</strong></div>
+          <div>NAME: <strong>{{currentUser?.displayName | uppercase}}</strong> </div>
+          <div>EMPLOYEE NUMBER: <strong>{{currentUser?.company}}</strong></div>
+          <div>DESIGNATION: <strong>{{currentUser?.title | uppercase}}</strong></div>
+        </div>
+
+      </div>
+
+      <div class="terms">
+        <button (click)="acceptConfidentialityDeclaration()">I ACCEPT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pop" *ngIf="showCodeOfConduct">
+  <div class="modal">
+    <div class="modal__inner" style="width:80%; max-height: 90%; overflow-y: auto;">
+
+      <div class="spinner" *ngIf="isInprogress"></div>
+
+      <!-- content start here -->
+
+      <div class="declarationform">
+        <p> <strong>CODE OF CONDUCT</strong> </p>
+        <p>TO: WEMA BANK PLC</p>
+
+        <p>
+          The Bank’s code of conduct sets out standards which are required to be followed by all employees.
+          Accordingly, a breach of the code will result in any of the following disciplinary measures – HCM Notice of
+          Displeasure, Caution, Warning, Suspension, Termination and Summary Dismissal, whichever is deemed
+          appropriate for the severity of the breach. <br />
+          Although this code contains brief statements of basic principles together with explanatory notes, it does
+          not spell out the Bank’s operational procedures. The Bank however expects that the actions of all its
+          employees at all times shall reflect the ethical standards outlined by the code with a view to enhancing the
+          good image of the Bank.
+        </p>
+
+        <strong>EMPLOYEE CONDUCT</strong>
+        <p>All employees of the bank are expected to demonstrate a minimum standard of behavior as outlined below:</p>
+
+        <strong>Personal Conduct & Data Confidentiality</strong>
+        <p>Every employee must demonstrate a standard of personal conduct at the minimum level stated below:</p>
+
+        <p>
+          Each employee shall at all times maintain integrity and objectivity and the highest professional standards
+          during business transactions. Critical aspects of these include:
+        </p>
+
+        <ul>
+          <li>Non-deliberate misrepresentation of facts</li>
+          <li>Offer and acceptance of gratification from customers. Gratification in this context relates
+            to any official relationship induced gift or benefit. </li>
+          <li>Maintenance of absolute confidentiality of all data, banking transactions and customer
+            relationships. </li>
+        </ul>
+
+        <p>
+          Staff shall maintain a standard of good judgment and moderation in their personal behavior and
+          relationships with colleagues at all times. No staff shall be allowed to consume alcohol and/or controlled
+          substances in the office or during office/business hours. Smoking shall also not be allowed on the Bank’s
+          premises or on official engagements
+        </p>
+
+        <p>The Bank will not tolerate any acts capable of embarrassing and tarnishing its image, irrespective of whether
+          these acts occur during official hours or not.</p>
+
+        <p>Kindly refer to the Code of Conduct section of the HCM Policy for the full text.</p>
+
+        <div>
+          <div>Dated this <strong>{{currentdate?.day}}</strong> day of <strong>{{currentdate?.month}}</strong> year
+            <strong>{{currentdate?.year}}</strong></div>
+          <div>NAME: <strong>{{currentUser?.displayName | uppercase}}</strong> </div>
+          <div>EMPLOYEE NUMBER: <strong>{{currentUser?.company}}</strong></div>
+          <div>DESIGNATION: <strong>{{currentUser?.title | uppercase}}</strong></div>
+        </div>
+
+      </div>
+
+      <div class="terms">
+        <button (click)="acceptCodeOfConductDeclaration()">I ACCEPT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pop" *ngIf="showAttestationForm">
+  <div class="modal">
+    <div class="modal__inner" style="width:60%; max-height: 90%; overflow-y: auto;">
+
+      <div class="spinner" *ngIf="isInprogress"></div>
+
+      <!-- content start here -->
+
+      <div class="declarationform">
+        <p> <strong>ATTESTATION OF STAFF INFORMATION</strong> </p>
+        <p>I <strong>{{currentUser?.displayName | uppercase}}</strong> do hereby attest as an Employee of the Bank as
+          follows:</p>
+
+
+        <ol>
+          <li>That every information provided by me which includes, but not limited to my dependent(s), family,
+            professional qualifications, educational history and previous employer(s), is accurate, true and reflect the
+            exact position as date of giving same to the Bank.</li>
+          <li>That I undertake to promptly inform Human Capital Management of any changes to the information provided by
+            me should there be any change thereto.</li>
+          <li>That I understand that should any information provided by me to the Bank, which includes, but not limited
+            to my dependent(s), family, professional qualifications, educational history and previous employer(s) be
+            found to be false or inaccurate, Management reserves the right take disciplinary action against me, which
+            may include summary dismissal from the employment of the Bank.</li>
+        </ol>
+
+
+      </div>
+
+      <div class="terms">
+        <button (click)="acceptAttestation()">
+          I agree to all terms of the above Attestation of Staff Information
+        </button>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<div class="pop" *ngIf="showModelLink">
+  <div class="modal">
+    <div class="modal__inner" style="width:350px; max-height: 90%; overflow-y: auto;">
+
+      <!-- content start here -->
+
+      <div style="padding: 20px;">
+
+        <div style="margin-bottom: 20px;">
+          <a (click)="closeShowModelLink()" href="https://portal.xceed365.com/home" target="_blank">Employee
+            Self-Service (ESS) Portal</a>
+        </div>
+
+        <div>
+          <a (click)="closeShowModelLink()" href=" http://172.27.4.86/XceedSelfServ/Essstartpage.aspx"
+            target="_blank">Pay-Slip Requests Prior to Nov. 2018</a>
+        </div>
+
+      </div>
+
+      <div class="terms">
+        <button (click)="closeShowModelLink()">Cancel</button>
+      </div>
+
+
+    </div>
+  </div>
+</div>

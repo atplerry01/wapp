@@ -1,0 +1,186 @@
+<!-- <div class="side-bar" [hidden]="!showSideBar" [style.max-height.px]="mySize"> -->
+<div class="side-bar" [hidden]="!showSideBar">
+
+    <!-- <div class="profile" #profile>
+
+        <img class="profile-img" src="assets/images/igyaban.jpg" alt="" />
+        <h4>Solomon David</h4>
+        <h5>Senior Software Engineer</h5>
+    </div> -->
+
+    <div class="sidebar-links">
+            <div class="title2 margintop20">Favourite links</div>
+        <ul>
+            <li *ngIf="!isHome" routerLink="/sc/home">
+                <i class="fa fa-bank"></i>
+                Home
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                E-mail
+            </li>
+            <li routerLink="/sc/accenquiry">
+                <i class="fa fa-diamond"></i>
+                Account Enquiry
+            </li>
+            <li [routerLink]="['/sc/home/events', {id:5}]">
+                <i class="fa fa-diamond"></i>
+                Who's Who
+            </li>
+            <li>
+                <i class="fa fa-diamond"></i>
+                Other important link
+                <i class="drpArrow fa fa-angle-left"></i>
+                <!-- <ul [hidden]="selectedLink">
+                    <li>My first</li>
+                    <li>My second</li>
+                    <li>My third</li>
+                </ul> -->
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <li>
+                <i class="fa fa-diamond"></i>
+                Other important link
+                <i class="drpArrow fa fa-angle-left"></i>
+                <!-- <ul>
+                    <li>My fourth</li>
+                    <li>My fiveth</li>
+                    <li>My sixt</li>
+                </ul> -->
+            </li>
+            <li>
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Other important link
+            </li>
+            <!-- <li routerLink="">
+                    <i class="fa fa-diamond"></i>
+                    Other important link
+                </li>
+                <li routerLink="">
+                    <i class="fa fa-diamond"></i>
+                    Other important link
+                </li> -->
+            <li routerLink="">
+                <i class="fa fa-diamond"></i>
+                Last important link
+            </li>
+
+
+        </ul>
+    </div>
+
+</div>
+
+
+<!-- <div class="sidebarTitle">Good Morning, Ishmael</div>
+<div class="profile row">
+    <div class="col-xs-5 profile-img">
+        <img src="assets/images/igyaban.jpg" alt="" />
+
+        <div class="changedp">
+            <input type="file" id="pxfile" (change)="onImageChange($event)" #uploadFile />
+            <label for="pxfile">
+        <span>Change Picture</span>
+      </label>
+        </div>
+
+    </div>
+    <div class="col-xs-7 profile-details">
+        <div class="personaldetail">
+            Ishmael Gyaban
+            <br> STAFF
+            <br> Application Services & Innovation
+        </div>
+
+        <div class="dept"> Head Office</div>
+
+        <div class="deptdetail">
+            <span>Dept. Head:</span>
+            <br>
+            <a>John AAA Paul</a>
+            <br>
+            <span>Supervisor</span>
+            <br>
+            <a>Micheal BBB Simpson</a>
+        </div>
+
+
+        <div class="signout">
+            <a routerLink="/signin">Log out</a>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="sidebarTitle margintop10">Favourite Links</div>
+<div class="sidebar-links">
+
+    <ul>
+        
+        <li *ngIf="!isHome" routerLink="/sc/home">Home <i class="fa fa-bank"></i></li>
+        <li routerLink="">E-mail <i class="fa fa-diamond"></i></li>
+        <li routerLink="/sc/accenquiry">Account Enquiry <i class="fa fa-diamond"></i></li>
+        <li [routerLink]="['/sc/home/events', {id:5}]">Who's Who <i class="fa fa-diamond"></i></li>
+        <li routerLink="">Other important link <i class="fa fa-diamond"></i></li>
+        <li routerLink="">Other important link <i class="fa fa-diamond"></i></li>
+        <li routerLink="">Other important link <i class="fa fa-diamond"></i></li>
+        <li routerLink="">Other important link <i class="fa fa-diamond"></i></li>
+        <li routerLink="">Other important link <i class="fa fa-diamond"></i></li>
+        <li routerLink="">Last important link <i class="fa fa-diamond"></i></li>
+    </ul>
+
+
+
+</div> -->

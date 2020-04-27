@@ -1,0 +1,30 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<app-report-template 
+
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg" 
+[showSearch]="true" 
+[showPagination]="true" 
+[showPerPage]="true" 
+[dateFormat]="'MM-DD-YYYY'" 
+[showDate]="true" 
+[isDateRange]="true"
+[showExcelExport]="true"  
+[moduleName]="'Limit Notification'"
+[reportTitle]="'Limit Notification Report'"
+[reportHeaders]="reportHeaders" 
+[reportData]="accounts" 
+(searchTriggered)="onSearch($event)" 
+(exportExcelTriggered)="ExportDataToExcel()"
+ [page]="page" 
+ [total_pages]="total_pages"  
+ (pageChange)="onPageChange($event)" 
+ >
+</app-report-template>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,6 @@
+<form role="form" novalidate [formGroup]="form">
+  <formly-form [model]="model" [fields]="fields" [form]="form">
+    <button *ngIf="showSubmit" mat-raised-button  (click)="submit(model)">{{submitLabel}}</button>
+    <button *ngIf="showClose" mat-raised-button class="alignRight" (click)="closeForm()">Cancel</button>
+  </formly-form>
+</form>

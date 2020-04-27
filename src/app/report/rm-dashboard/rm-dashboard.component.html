@@ -1,0 +1,156 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<app-report-template 
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg" 
+[isColumnSelectable]="true"
+(columSelectionTriggered)="onRMDashboardColumnSelected($event)" 
+[showSearch]="showSearch" 
+[searchText1_Placeholder]="accNoPlaceholder"
+[moduleName]="'RMs Report'" 
+[reportTitle]="'Relationship Managers Report (Summmary)'"
+[reportHeaders]="reportDashboardHeader" 
+[reportData]="dashboardData" 
+ (searchTriggered)="onSearch($event)"
+ (myAccessTriggered)="getMyAccess($event)" 
+ >
+</app-report-template>
+<div *ngIf="(RMDashboardDetails?.length>0 || showTextFilter) && tableClicked==='dashboard'">
+        <app-report-template 
+        [showAccess] = "false"
+        [showTopCloseIcon] = "true"
+        [showPagination]="true" 
+   [showExcelExport]="true" 
+   (exportExcelTriggered)="ExportToExcel_onRMDashboardColumnSelected()" 
+   [page]="page" 
+   [total_pages]="total_pages"  
+   [totalRecords] = "totalRecords" 
+   (pageChange)="onPageChange_onRMDashboardColumnSelected($event)"
+        [showTextFilter]="showTextFilter" 
+        [textFilter_width] = "200"
+        [filterTextPlaceholder]="'Filter by Account No/Name'"
+        (filterTextTriggered) = "onRMDFilterTextChange($event)"      
+        (topCloseTriggered) = "RMDDTopClose()"
+        [moduleName]="'RMs Report'" 
+        [reportTitle]="RMDashboardDetailReportTitle"
+        [reportHeaders]="reportDashboardDetailsHeader" 
+        [reportData]="RMDashboardDetailsFiltered" 
+        >
+    </app-report-template>
+    </div>
+
+
+<app-report-template 
+[isInprogress]="isInprogress2" 
+[showNotFoundMsg]="showNotFoundMsg2" 
+[isColumnSelectable]="true"
+(columSelectionTriggered)="onNonFinAccOpenColumnSelected($event)"
+[showAccess] = "false" 
+[moduleName]="'RMs Report'" 
+[reportTitle]="'Account Opened/Introduced'"
+[reportHeaders]="reportAccountsOpenedHeader" 
+[reportData]="accountsOpenedData"
+ >
+</app-report-template>
+<div *ngIf="(reportDashboardNonfinDetailsData?.length>0 || showTextFilter) && tableClicked==='nonfinaccopen'">
+        <app-report-template 
+        [showAccess] = "false"
+        [showTopCloseIcon] = "true"
+        [showPagination]="true" 
+        [showExcelExport]="true" 
+        (exportExcelTriggered)="ExportToExcel_onNonFinAccOpenColumnSelected()" 
+       [page]="page" 
+       [total_pages]="total_pages" 
+       [totalRecords] = "totalRecords"  
+        (pageChange)="onPageChange_onNonFinAccOpenColumnSelected($event)"
+        [showTextFilter]="showTextFilter" 
+        [textFilter_width] = "200"
+        [filterTextPlaceholder]="'Filter by Account No/Name'"
+        (filterTextTriggered) = "onRMDFilterTextChange($event)"      
+        (topCloseTriggered) = "RMDDTopClose()"
+        [moduleName]="'RMs Report'" 
+        [reportTitle]="RMDashboardDetailReportTitle"
+        [reportHeaders]="reportDashboardNonfinDetailsHeader" 
+        [reportData]="reportDashboardNonfinDetailsFilteredData" 
+        >
+    </app-report-template>
+    </div>
+
+
+
+
+<app-report-template 
+[isColumnSelectable]="true"
+(columSelectionTriggered)="onNonFinAccStatusColumnSelected($event)" 
+[showAccess] = "false" 
+[moduleName]="'RMs Report'" 
+[reportTitle]="'Account Status'"
+[reportHeaders]="reportAccountStatusHeader" 
+[reportData]="accountStatusData"
+ >
+</app-report-template>
+<div *ngIf="(RMAccountStatusDetails?.length>0|| showTextFilter) && tableClicked==='nonfinaccstatus'">
+        <app-report-template 
+        [showAccess] = "false"
+        [showTopCloseIcon] = "true"
+        [showPagination]="true" 
+        [showExcelExport]="true" 
+        (exportExcelTriggered)="ExportToExcel_onNonFinAccStatusColumnSelected()" 
+       [page]="page" 
+       [total_pages]="total_pages"  
+       [totalRecords] = "totalRecords" 
+        (pageChange)="onPageChange_onNonFinAccStatusColumnSelected($event)"
+        [showTextFilter]="showTextFilter" 
+        [textFilter_width] = "200"
+        [filterTextPlaceholder]="'Filter by Account No/Name'"
+        (filterTextTriggered) = "onRMAccStatusFilterTextChange($event)"      
+        (topCloseTriggered) = "RMDDTopClose()"
+        [moduleName]="'RMs Report'" 
+        [reportTitle]="RMDashboardDetailReportTitle"
+        [reportHeaders]="reportNonFinAccStatusDetailsHeader" 
+        [reportData]="RMAccountStatusDetailsFiltered" 
+        >
+    </app-report-template>
+    </div>
+
+
+
+<app-report-template 
+[isColumnSelectable]="true"
+(columSelectionTriggered)="onNonFinReactivatedAccColumnSelected($event)" 
+[showAccess] = "false" 
+[moduleName]="'RMs Report'" 
+[reportTitle]="'Reactivated Accounts'"
+[reportHeaders]="reportReactivatedAccountHeader" 
+[reportData]="reactivatedAccountData"
+ >
+</app-report-template>
+<div *ngIf="(RMAccountReactivationDetail?.length>0 || showTextFilter) && tableClicked==='nonfinreactedacc'">
+        <app-report-template 
+        [showAccess] = "false"
+        [showTopCloseIcon] = "true"
+        [showPagination]="true" 
+        [showExcelExport]="true" 
+        (exportExcelTriggered)="ExportToExcel_onNonFinReactivatedAccColumnSelected()" 
+       [page]="page" 
+       [total_pages]="total_pages"
+       [totalRecords] = "totalRecords"  
+        (pageChange)="onPageChange_onNonFinReactivatedAccColumnSelected($event)"
+        [showTextFilter]="showTextFilter" 
+        [textFilter_width] = "200"
+        [filterTextPlaceholder]="'Filter by Account No/Name'"
+        (filterTextTriggered) = "onRMAccReactionFilterTextChange($event)"      
+        (topCloseTriggered) = "RMDDTopClose()"
+        [moduleName]="'RMs Report'" 
+        [reportTitle]="RMDashboardDetailReportTitle"
+        [reportHeaders]="reportNonFinAccReactionDetailsHeader" 
+        [reportData]="RMAccountReactivationDetailFiltered" 
+        >
+    </app-report-template>
+    </div>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,113 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<div class="pagelink">
+    <div>
+        <a class="nav-link" [routerLink]="['/retail/remita-lending-create-loan']"> Create Loan</a>   
+    </div>
+  </div>
+
+  
+<app-report-template 
+[showSearch]="true"
+[searchText1] ="searchPhoneNo"
+[searchText1_Placeholder]="'Phone Number'"
+(searchTriggered)="onSearch($event)" 
+[isRowSelectable]="true" 
+[isCollapseOnSelect] = "true" 
+[showCloseIcon] = "salaryPaymentDetails?.length"
+(closeTriggered)="closeSalaryHistory()"
+(rowSelectionTriggered)="onRowSelected($event)"
+  [isInprogress]="isInprogress" 
+  [showNotFoundMsg]="showNotFoundMsg" 
+  [showDropdownMenu1]="true"
+  [dropdownMenu1List]="reportNameList" 
+  [dropdownMenu1SelectedCode]="selectedType"
+  (DropdownMenu1Triggered)="onReportNameChanged($event)" 
+  [showDate]="true" 
+  [isDateRange]="true" 
+  [dateFormat]="'YYYY-MM-DD'" 
+  [moduleName]="['Create Remita Lending', 'Authorize Remita Lending']"
+  [reportTitle]="reportTitle" 
+  [reportHeaders]="ReportHeader" 
+  [reportData]="reportData"
+  [showEdit]="selectedType !== 's' &&  accessKey === 'C'"
+  (editRowTriggered)="onMenuEdit($event)" 
+  [showDelete]="selectedType === 'p' &&  accessKey === 'C'"
+  (deleteRowTriggered)="onSubMenuDelete($event)"
+  (myAccessTriggered)="myAccess($event)"
+  [showPagination]="true" 
+ [page]="page" 
+ [per_page]="per_page" 
+ [total_pages]="total_pages" 
+[totalRecords]="totalRecords" 
+ (pageChange)="onPageChange($event)"
+  >
+</app-report-template>
+
+<ng-container *ngIf="salaryPaymentDetails?.length">
+<app-report-template
+  [showAccess]="false"
+  [moduleName]="['Create Remita Lending', 'Authorize Remita Lending']"
+  [reportTitle]="'Remita Lending - Salary History'"
+  [reportHeaders]="salaryHistoryHeader" 
+  [reportData]="salaryPaymentDetails"
+>
+</app-report-template>
+</ng-container>
+
+<ng-container *ngIf="salaryHistory?.loanHistoryDetails?.length">
+<app-report-template
+[showAccess]="false"
+[moduleName]="['Create Remita Lending', 'Authorize Remita Lending']"
+  [reportTitle]="'Loan History'"
+  [reportHeaders]="loanHistoryHeader" 
+  [reportData]="salaryHistory?.loanHistoryDetails"
+>
+</app-report-template>
+</ng-container>
+
+
+<!-- model box section -->
+<div class="pop" *ngIf="showForm">
+  <div class="modal">
+
+    <div class="modal__inner">
+      <div class="form-header" style="font-size: 18px">{{formTitle}}</div>
+
+      <div class="myform">
+        <div class="spinner" *ngIf="isInprogress"></div>
+
+        <div *ngIf="currentAction === 'r'" class="errorColor">
+          <h4>This record is about to be removed from this platform</h4>
+        </div>
+        <div>         
+          <ul>
+              <li>
+                 Account Name: <strong style="font-size: 14px; margin-left: 10px;">{{ selectedRecord.customerName }}</strong>
+                </li>
+            <li>
+                Account No: <strong style="font-size: 14px; margin-left: 10px;">{{ selectedRecord.accountNumber }}</strong>
+            </li>
+            <li>
+                Bank Code: <strong style="font-size: 14px; margin-left: 10px;">{{ selectedRecord.bankCode }}</strong>
+              </li>
+              <li>
+                 Loan Amount: <strong style="font-size: 14px; margin-left: 10px;">{{ selectedRecord.loanAmount | currency:' ' }}</strong>
+                </li>
+          </ul>
+        </div>
+
+
+        <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+          (closeTriggered)="showForm = false">
+        </app-form-template>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<app-footer></app-footer>

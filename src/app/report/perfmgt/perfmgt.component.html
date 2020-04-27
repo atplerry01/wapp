@@ -1,0 +1,44 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<app-report-template 
+
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg" 
+[showSearch]="true" 
+[showBranchList]="showBranchList"
+[showDropdownMenu1]="true"
+[showDropdownMenu2]="selectedCatCode === 1"  
+[showDropdownMenu3]="selectedCatCode === 1 && reportData?.length>3"  
+[showPagination]="false" 
+[showDate]="true" 
+[isDateRange]="true" 
+[showTotal]="false" 
+[showExcelExport]="true" 
+[isRowSelectable]="false" 
+[searchText1_Placeholder]="accNoPlaceholder"
+[dateFormat]="'MMM-YYYY'" 
+[moduleName]="'Account Profitability'" 
+[reportTitle]="'Account Profitability Report'"
+[dropdownMenu1List]="categoryList"
+[dropdownMenu2List]="reportTypeList" 
+[dropdownMenu3List]="topCustList"   
+[dropdownMenu1SelectedCode]="selectedCatCode" 
+[dropdownMenu2SelectedCode]="reportType" 
+[dropdownMenu3SelectedCode]="selectedTopCust" 
+[reportHeaders]="reportHeaders" 
+[reportData]="reportData" 
+(DropdownMenu1Triggered)="onMainCateoryChange($event)"
+(DropdownMenu2Triggered)="onReportTypeChanged($event)"
+(DropdownMenu3Triggered)="onTopCustomerChanged($event)"
+ (searchTriggered)="onSearch($event)" 
+ (exportExcelTriggered)="onExportToExcel()" 
+ >
+</app-report-template>
+
+
+
+
+<app-footer></app-footer>

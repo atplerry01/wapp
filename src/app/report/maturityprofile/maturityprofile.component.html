@@ -1,0 +1,100 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<div class="main-content">
+
+  <!-- Performance Management/Return on Asset(ROA) Page -->
+
+
+  <div class="card-box-shadow searcharea">
+
+    <select [(ngModel)]="selectedBranchCode" *ngIf="myAccess?.key!=='B'">
+        <option [ngValue]="'ALL'">Consolidated</option>
+      <option *ngFor="let brn of branches" [ngValue]="brn.branchcode">{{brn.branch}}</option>
+    </select>
+
+    <select [(ngModel)]="selectedDays">
+      <option [ngValue]="'7'">7 Days</option>
+      <option [ngValue]="'30'">30 Days</option>
+      <option [ngValue]="'60'">60 Days</option>
+      <option [ngValue]="'90'">90 Days</option>
+      <option [ngValue]="'180'">180 Days</option>
+      <option [ngValue]="'ALL'">Consolidated</option>
+    </select>
+
+    <i class="fa fa-search enq-inp-incon" (click)="getMaturity_profile()"></i>
+
+  </div>
+
+  <div class="card-box-shadow report-content">
+
+    <div class="card-box-shadow report-title alignmiddle">
+       Maturity Profile
+       <div class="accesslevelLayout" *ngIf="myAccess">
+          <span [class]="myAccess?.myclass"><i class="fas fa-circle"></i><span class="name">{{myAccess?.name}}</span><span class="desc">{{myAccess?.description}}</span></span>
+      </div>
+    </div>
+
+  
+    <div class="card-box-shadow" *ngIf="accounts.length">
+      <div class="table-responsive-vertical shadow-z-1 form-table">
+        <table id="table" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Branch</th>
+              <th>Account #</th>
+              <th>Customer</th>
+              <th class="align-text-right">Tenor</th>
+              <th>Date Opened</th>
+              <th>Maturity Date</th>
+              <th class="align-text-right">Deposit Amt.</th>
+              <th class="align-text-right">Int. Rate</th>
+              <th class="align-text-right">Cleared Bal.</th>
+              <th class="align-text-right">Int. Payable</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let rep of accounts">
+              <td data-title="Product">{{rep?.productname}}</td>
+              <td data-title="Branch">{{rep?.branchname}}</td>
+              <td data-title="Account #">{{rep?.accountno}}</td>
+              <td data-title="Customer">{{rep?.customername}}</td>
+              <td data-title="Tenor" class="align-text-right">{{rep?.tenor}}</td>
+              <td data-title="Date Opened">{{rep?.dateopened| date:'dd-MMM-yyyy'}}</td>
+              <td data-title="Maturity Date">{{rep?.maturitydate | date:'dd-MMM-yyyy'}}</td>
+              <td data-title="Deposit Amt." class="align-text-right">{{rep?.depositamount| currency:' '}}</td>
+              <td data-title="Int. Rate" class="align-text-right">{{rep?.interestrate| currency:' '}}</td>
+              <td data-title="Cleared Bal." class="align-text-right">{{rep?.clearedbalance| currency:' '}}</td>
+              <td data-title="Int. Payable" class="align-text-right">{{rep?.interestpayable| currency:' '}}</td>
+            </tr>
+
+
+            <tr class="tb-footer" *ngIf="accounts.length>1">
+              <td colspan="7" ></td>
+                            
+              <td data-title="Total Credit Turnover" class="align-text-right">{{totalDepositamount| currency:' '}}</td>
+              <td data-title="Total Avg. Debit Bal." class="align-text-right">{{totalAverageinterestrate| currency:' '}}</td>
+              <td data-title="Total Avg. Credit Bal." class="align-text-right">{{totalClearedbalance| currency:' '}}</td>
+              <td data-title="Total ROA" class="align-text-right">{{totalInterestpayable | currency:' ' }}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="spinner" *ngIf="isInprogress"></div>
+  <div class="card-box-shadow alignmiddle notfound" *ngIf="!isInprogress && isSearchedBefore && !accounts?.length">
+    Report not available for this search criteria!
+  </div>
+
+</div>
+
+
+<app-footer></app-footer>

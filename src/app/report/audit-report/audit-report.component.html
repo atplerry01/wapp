@@ -1,0 +1,17 @@
+<app-header> </app-header>
+<app-menu></app-menu>
+
+<app-report-template
+  [isInprogress]="isInprogress"
+  [showNotFoundMsg]="showNotFoundMsg"
+  [isRowSelectable]="true"
+  [showAccess]="false"
+
+  [disableMultipleCollapseOnSelectToggle]="false"
+  
+  [moduleName]="'Audit Report Portal'"
+  [reportTitle]="'Audit Report Portal'"
+  [reportHeaders]="tableHeaders"
+  [reportData]="auditReport"
+>
+</app-report-template>

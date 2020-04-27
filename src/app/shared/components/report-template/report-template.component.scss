@@ -1,0 +1,143 @@
+@import "../../../../assets/sass/input";
+@import "../../../../assets/sass/flex_mixin";
+.searcharea {
+  position: relative;
+  width: 100%;
+  padding: 5px;
+  @include font-size(7);
+  @include flexbox; // inline-block;
+  @include  flex-wrap(wrap);
+
+  input[type=text],
+  select {
+    min-width: 130px;
+    height: 30px;
+    padding: 5px;
+  } //  select{
+  //   width: 100px;
+  //   height: 30px;
+  //   padding: 5px;
+  // }
+  span {
+    //  font-weight: bold;
+    color: $fore-color1;
+  }
+  .enq-inp-incon {
+    cursor: pointer;
+    padding: 4px 10px;
+    background-color: rgba($primary-color, 1);
+    color: $primary-color2;
+    height: 30px;
+    @include font-size(10); //  position: absolute;
+    //  left: 200px;
+    //  top: 6px;
+  }
+
+}
+
+.report-content {
+  position: relative;
+
+  .report-title {
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .report-heading {
+    padding: 10px;
+    h4 {
+      @include font-size(6);
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+  .trclickable {
+    &:hover {
+      cursor: pointer !important;
+    }
+  }
+
+  .tdclickable {
+    background-color: transparent !important;
+
+    &:hover {
+      font-weight: bold !important;
+      @include font-size(6);
+      background-color: rgba($primary-color, .5) !important;
+      color: #fff !important;
+      cursor: pointer !important;
+    }
+  }
+
+  .exporter {
+    position: absolute;
+    right: 20px;
+    top: 6px;
+    i {
+      cursor: pointer;
+      @include font-size(10);
+      padding: 4px 10px;
+      background-color: rgba(82, 97, 80, 0.3);
+      color: rgba(26, 71, 20, .8);
+    }
+  }
+
+  .closeIcon {
+    position: relative; 
+    right: 30px;
+    bottom: 10px;
+  }
+
+  .topCloseIcon {
+    position: absolute; 
+    top: 7px;
+    right: 20px;
+  }
+
+  .tdIcons{
+   
+    i{
+      font-size: 13px !important;     
+      cursor: pointer;
+    }
+    .edit{
+      color: rgb(233, 154, 7) !important;
+      padding-right: 8px !important;    
+    }
+    .del{
+      color: red !important;
+      padding-right: 2px !important;    
+    }
+  }
+
+  .add{
+    float: right; 
+    margin:10px;
+  }
+
+  .sort{
+    
+    &:hover{
+      cursor: pointer !important;
+    }
+    span>i{
+      padding: 3px;
+      color: rgba(196, 182, 182, 0.774);
+      font-size: 12px !important;     
+    }
+  }
+
+}
+
+
+  input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    background: #fcfff4;
+    border-radius: 4px;
+    box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+  }   

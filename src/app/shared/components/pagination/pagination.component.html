@@ -1,0 +1,15 @@
+<div class="pagination">
+  <a (click)="selectPage(1, $event,currentPage == 1)" [class.active]="currentPage == 1">First</a>&ensp;|&ensp;
+  <a (click)="selectPage(currentPage - 1, $event,currentPage == 1)" [class.active]="currentPage == 1">Prev</a>
+
+
+  <a (click)="cancelEvent($event)" *ngIf="(currentPage - range) > 1">...</a>
+
+  <a *ngFor="let page of pages | async" [class.active]="page == currentPage" (click)="selectPage(page, $event,page == currentPage)">
+      {{page}}
+    </a>
+
+  <a class="disabled" (click)="cancelEvent($event)" *ngIf="(currentPage + range) < totalPages">...</a>
+  <a (click)="selectPage(currentPage + 1, $event,currentPage == totalPages)" [class.active]="currentPage == totalPages">Next</a>&ensp;|&ensp;
+  <a (click)="selectPage(totalPages, $event,currentPage == totalPages)" [class.active]="currentPage == totalPages">Last</a>
+</div>

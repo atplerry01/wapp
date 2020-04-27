@@ -1,0 +1,141 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<app-report-template 
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg" 
+[isRowSelectable]="true"
+[isCollapseOnSelect] = "isCollapseOnSelect" 
+[showCloseIcon] = "showCloseIcon"
+[showAdd] = "true"
+(AddTriggered)="onAddMenu()"
+[showEdit] = "true"
+(editRowTriggered)="onMenuEdit($event)"
+[showDelete] = "true"
+(deleteRowTriggered)="onMenuDelete($event)"
+[moduleName]="'App Admin'" 
+[reportTitle]="'Application Menu'"
+[reportHeaders]="menuHeaders" 
+[reportData]="menus" 
+(searchTriggered)="onSearch($event)" 
+(rowSelectionTriggered)="onRowSelected($event)"
+(closeTriggered)="closeSubmenu()"
+ >
+</app-report-template>
+
+<ng-container *ngIf="showSubmenus">
+    <app-report-template 
+    [isInprogress]="isInprogress" 
+    [showNotFoundMsg]="showNotFoundMsg" 
+    [isRowSelectable]="true"
+    [isCollapseOnSelect] = "isCollapseOnSelect_access" 
+    [disableMultipleCollapseOnSelectToggle]= "true"
+    [showCloseIcon] = "showCloseIcon_access"
+    [showAdd] = "true"
+    (AddTriggered)="onAddSubMenu()"
+    [showEdit] = "true"
+    (editRowTriggered)="onSubMenuEdit($event)"
+    [showDelete] = "true"
+    (deleteRowTriggered)="onSubMenuDelete($event)"
+    [showAccess] = "false"
+    [moduleName]="'App Admin'" 
+    [reportTitle]="'Sub-Menu'"
+    [reportHeaders]="subMenuHeaders" 
+    [reportData]="submenus" 
+    (rowSelectionTriggered)="onSubmenuRowSelected($event)"
+    (closeTriggered)="closeRoleAccess()"
+    >
+</app-report-template>
+</ng-container>
+
+<ng-container *ngIf="showRoleAccess">
+  <app-report-template 
+  [isInprogress]="isInprogress" 
+  [showNotFoundMsg]="showNotFoundMsg" 
+  [isRowSelectable]="true"
+  [isCollapseOnSelect] = "isCollapseOnSelect_accessRoleMember" 
+  [disableMultipleCollapseOnSelectToggle]= "true"
+  [showCloseIcon] = "showCloseIcon_accessRoleMember"
+  [showAdd] = "true"
+  (AddTriggered)="onAddRoleAccess()"
+  [showEdit] = "true"
+  (editRowTriggered)="onRoleAccessEdit($event)"
+  [showDelete] = "true"
+  (deleteRowTriggered)="onRoleAccessDelete($event)"
+  [showAccess] = "false"
+  [moduleName]="'App Admin'" 
+  [reportTitle]="'Sub-Menu Access Roles'"
+  [reportHeaders]="RoleAccessHeaders" 
+  [reportData]="roleAccesses" 
+  (rowSelectionTriggered)="onRoleAccessRowSelected($event)"
+  (closeTriggered)="closeRoleAccessUsers()"
+  >
+</app-report-template>
+</ng-container>
+
+<ng-container *ngIf="employees?.length>0">
+  <app-report-template 
+  [isInprogress]="isInprogress" 
+  [showNotFoundMsg]="showNotFoundMsg" 
+  [showTextFilter]="showEmployeeFilter" 
+  [filterTextPlaceholder]="'Filter by name'"
+  (filterTextTriggered) = "onFilterTextChange($event)"      
+  [showAccess] = "false"
+  [moduleName]="'App Admin'" 
+  [reportTitle]="'Access Role Members'"
+  [reportHeaders]="EmployeeHeaders" 
+  [reportData]="employeesFiltered" 
+  >
+</app-report-template>
+</ng-container>
+
+
+<ng-container *ngIf="showRoleAccess">
+  <app-report-template 
+  [isInprogress]="isInprogress" 
+  [showNotFoundMsg]="showNotFoundMsg" 
+  [showAccess] = "false"
+  [showAdd] = "true"
+  (AddTriggered)="onAddSpecialAccess()"
+  [showEdit] = "true"
+  (editRowTriggered)="onSpecialRoleAccessEdit($event)"
+  [showDelete] = "true"
+  (deleteRowTriggered)="onSpecialRoleAccessDelete($event)"
+  [moduleName]="'App Admin'" 
+  [reportTitle]="'Sub-Menu Special Access Roles'"
+  [reportHeaders]="specialAccessHeaders" 
+  [reportData]="specialRoleAccess" 
+  >
+</app-report-template>
+</ng-container>
+
+
+<app-footer></app-footer>
+
+
+
+
+
+ <!-- model box section -->
+ <div class="pop" *ngIf="showForm">   
+    <div class="modal">
+       
+       
+      <div class="modal__inner">
+          <div class="form-header">{{formTitle}}</div>
+
+        <div class="myform">
+            <div class="spinner" *ngIf="isInprogress"></div>
+            <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)" 
+            (closeTriggered)="showForm = false" [submitLabel]="submitLabel">            
+            </app-form-template>       
+
+        </div>
+   
+          
+      </div>
+      
+      </div>
+
+</div>

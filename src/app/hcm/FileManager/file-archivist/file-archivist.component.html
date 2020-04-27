@@ -1,0 +1,63 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<app-report-template 
+[showPagination]="true"
+[showPerPage]="true"
+[isRowSelectable]="true"
+[showDropdownMenu1]="true"
+[dropdownMenu1List]="caseTypes"
+(DropdownMenu1Triggered)="onCaseTypeChange($event)" 
+[dropdownMenu1SelectedCode]="selectedCaseCode"
+(rowSelectionTriggered)="onRowSelected($event)"
+[searchText1_Placeholder]="'Search Text'"
+[isInprogress]="isInprogress"
+[showNotFoundMsg]="showNotFoundMsg" 
+[showSearch]="true" 
+[showDate]="false" 
+[isDateRange]="false"
+[dateFormat]="'YYYY-MM-DD'" 
+[moduleName]="'RC-Loan Tele Collector'"
+[reportTitle]="reportTitle"
+[reportHeaders]="reportHeader" 
+[reportData]="reportData"
+[showEdit]="isFileOut === true"
+(editRowTriggered)="onMenuEdit($event)" 
+[showDelete]="isFileIn === true"
+(deleteRowTriggered)="onSubMenuDelete($event)"
+[page]="page" 
+[per_page]="per_page" 
+[total_pages]="total_pages" 
+[totalRecords]="totalRecords" 
+
+>
+</app-report-template>
+
+
+
+<div class="pop" *ngIf="showForm">
+    <div class="modal">
+  
+      <div class="modal__inner" style="width: 75%">
+        
+        <div>
+          <!-- <div class="form-header" style="font-size: 18px">{{formTitle}}</div> -->
+          <div>
+            <app-report-template [reportTitle]="'File Archive Details'" [isRowSelectable]="true"
+              [isInprogress]="isInprogress" [showNotFoundMsg]="showNotFoundMsg" [moduleName]="'RC-Loan Tele Collector'"
+              [reportHeaders]="archiveLogHeader" [reportData]="archiveLogs">
+            </app-report-template>
+          </div>
+
+          <div class="myform">
+            <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+              [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+            </app-form-template>
+          </div>
+
+        </div>
+  
+      </div>
+    </div>
+  </div>

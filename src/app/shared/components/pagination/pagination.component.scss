@@ -1,0 +1,26 @@
+// @import "../../../../assets/sass/input";
+
+.pagination {
+  text-align: center;
+  padding: 1em 0;
+}
+
+.pagination a,
+.pagination span {
+  color: #7a183e;
+  display: inline-block;
+  font-size: 0.85em;
+  padding: 1em 0.3em;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  color: #a3a3a3;
+  cursor: inherit !important;
+  text-decoration: none !important;
+}
+
+.pagination a:hover {
+ // text-decoration: underline;
+ cursor: pointer;
+}

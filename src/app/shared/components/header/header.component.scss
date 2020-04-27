@@ -1,0 +1,63 @@
+.mousepointer{
+    cursor: pointer;
+}
+.logout{
+    float: right;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+
+
+.logo-header{
+    background: #9d1287;
+    border-bottom: 1px solid #ffffff;
+}
+
+.logo-img{
+    width: 120px;
+}
+
+.span-greeting{
+    float: right;
+    padding-right: 20px;
+    color: #eeeeee;
+}
+
+.logo-menu{
+    margin: 0px;
+    padding: 0px;
+    text-align: right;
+
+    li{
+        display: inline-block;
+        padding: 0px 20px;
+        line-height: 5rem;  
+
+        a{
+            color: #ffffff;
+            font-size: 15px;
+        }
+    }
+}
+
+.header-bg{
+    background: #5f0150;
+    border-bottom: 1px solid #ffffff;
+} 
+
+
+.top-nav{
+    padding: 7px 0px;
+    color: #ffffff;
+}
+
+
+
+// .imgs{
+//     background-color: yellow;
+//     img{
+//         width: 150px;
+//     }
+// }

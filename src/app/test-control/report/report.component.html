@@ -1,0 +1,56 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+<div>
+
+  <app-report-template 
+  [isInprogress]="isInprogress" 
+  [showNotFoundMsg]="showNotFoundMsg" 
+  [showSearch]="true"
+  [showPerPage]="true" 
+  [showBranchList]="true" 
+  [showDropdownMenu1]="true"
+  [showDropdownMenu2]="true"  
+  [showDropdownMenu3]="true"  
+  [showPagination]="true"
+  [showDate]="true" 
+  [isDateRange]="true" 
+  [showTotal]="true"
+  [showExcelExport]="true" 
+  [isRowSelectable]="true" 
+  [searchText1_Placeholder]="'Account no..'"
+  [searchText2_Placeholder]="'show'" 
+  [dateFormat]="'DD-MM-YYYY'" 
+  [moduleName]="'Account Statistics'"
+  [dropdownMenu1List]="myDropdownMenu1List"
+  [dropdownMenu2List]="myDropdownMenu2List" 
+  [dropdownMenu3List]="myDropdownMenu3List"   
+  [dropdownMenu1SelectedCode]="myDropdownMenu1SelectedCode" 
+  [dropdownMenu2SelectedCode]="myDropdownMenu2SelectedCode" 
+  [dropdownMenu3SelectedCode]="myDropdownMenu3SelectedCode"
+  [reportTitle]="'My Report Title'"    
+  [reportHeaders]="reportHeaders" 
+  [reportData]="accounts" 
+  [totalRecords]="totalRecords" 
+  [page]="page" 
+  [total_pages]="total_pages"
+  (DropdownMenu1Triggered)="onDropdownMenu1Changed($event)"
+  (DropdownMenu2Triggered)="onDropdownMenu2Changed($event)"
+  (DropdownMenu3Triggered)="onDropdownMenu3Changed($event)"
+  (pageChange)="onPageChange($event)" 
+  (searchTriggered)="onSearch($event)" 
+  (exportExcelTriggered)="onExportToExcel()"
+  (rowSelectionTriggered)="onRowSelected($event)"
+  [isSortable]="true"
+  [currentSortPropertyName]="'productname'"
+  [currentSortOrder] = "'desc'"
+  (sortTriggered) = "onSort($event)"
+  >
+  </app-report-template>
+
+</div>
+
+
+
+<app-footer></app-footer>

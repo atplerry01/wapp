@@ -1,0 +1,38 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<app-report-template 
+
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg" 
+[showSearch]="true" 
+[showPagination]="true" 
+[showPerPage]="true" 
+[showDate]="true" 
+[isDateRange]="true" 
+[showExcelExport]="true" 
+[showDropdownMenu1]="true"
+[searchText1_Placeholder]="'WEB GUID..'"
+[dateFormat]="'MM-DD-YYYY'" 
+[moduleName]="'Wema Collect Reports'" 
+[dropdownMenu1List]="reportNameList"  
+[dropdownMenu1SelectedCode]="reportName" 
+[reportTitle]="reportTitle"
+[reportHeaders]="reportHeaders" 
+[reportData]="reportData" 
+(DropdownMenu1Triggered)="onReportNameChanged($event)"
+(searchTriggered)="onSearch($event)" 
+(exportExcelTriggered)="onExportToExcel()" 
+ [page]="page" 
+ [total_pages]="total_pages"  
+ [totalRecords] = "totalRecords" 
+ (pageChange)="onPageChange($event)" 
+ >
+</app-report-template>
+
+
+
+
+<app-footer></app-footer>

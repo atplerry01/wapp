@@ -1,0 +1,28 @@
+<app-header> </app-header>
+<app-menu></app-menu>
+<!--   [showDate]="true" -->
+<app-report-template
+  [showPagination]="true"
+  [showPerPage]="true"
+  [isRowSelectable]="true"
+  [showExcelExport]="true"
+  [showDropdownMenu1]="false"
+  [isInprogress]="isInprogress"
+  [showNotFoundMsg]="showNotFoundMsg"
+  [showSearch]="true"
+  [showDate]="true"
+  [isDateRange]="false"
+  [dateFormat]="'DD-MMM-YYYY'"
+  [moduleName]="'Fixed Deposit'"
+  [reportTitle]="reportTitle"
+  [reportHeaders]="reportHeader"
+  [reportData]="reportData"
+  (searchTriggered)="onSearch($event)"
+  (exportExcelTriggered)="ExportDataToExcel()"
+  [page]="page"
+  [per_page]="per_page"
+  [total_pages]="total_pages"
+  [totalRecords]="totalRecords"
+  (pageChange)="onPageChange($event)"
+>
+</app-report-template>

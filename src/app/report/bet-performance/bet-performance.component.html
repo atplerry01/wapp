@@ -1,0 +1,44 @@
+<app-header> </app-header>
+<app-menu></app-menu>
+<!-- 
+<app-report-template
+  [isInprogress]="isInprogress"
+  [showNotFoundMsg]="showNotFoundMsg"
+  [showSearch]="false"
+  [showDropdownMenu1]="true"
+  [dropdownMenu1List]="companyLists"
+  [dropdownMenu1SelectedCode]="selectedAccountCode"
+  [dropdownFilter_Placeholder]="'Filter by Company'"
+  (DropdownMenu1Triggered)="onMainAccountChange($event)"
+  [showDate]="true"
+  [isDateRange]="true"
+  (searchTriggered)="onSearch($event)"
+  [showExcelExport]="true"
+  (exportExcelTriggered)="onExportToExcel()"
+  [showPagination]="false"
+  [showPerPage]="false"
+  [page]="page"
+  [total_pages]="total_pages"
+  [totalRecords]="totalRecords"
+  (pageChange)="onPageChange($event)"
+  [dateFormat]="'DD-MMM-YYYY'"
+  [moduleName]="'Fixed Deposit'"
+  [reportTitle]="'Bet Collection Performance (November)'"
+  [reportHeaders]="tableHeaders"
+  [reportData]="betdata"
+>
+</app-report-template> -->
+
+
+<app-report-template
+  [isInprogress]="isInprogress"
+  [dateFormat]="'DD-MMM-YYYY'"
+  [moduleName]="'Fixed Deposit'"
+  [reportTitle]="'Bet Collection Performance (November-2018)'"
+  [reportHeaders]="tableHeaders"
+  [reportData]="betdata"
+>
+</app-report-template>
+
+
+<app-footer></app-footer>

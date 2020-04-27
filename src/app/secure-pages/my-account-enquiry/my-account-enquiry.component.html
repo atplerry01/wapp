@@ -1,0 +1,324 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<div class="main-content">
+
+
+
+
+  
+  <!-- search by account name content end here -->
+
+  <div class="spinner" *ngIf="isInprogress"></div>
+
+ 
+  <!-- account details section -->
+<div  *ngIf="!isInprogress && accounts?.length">
+  <div class="card-box-shadow acc-enq-accinfo">
+    <div>
+      <H5>{{accountFirst?.BRANCH}} - {{accountFirst?.BRANCHCODE}}</H5>
+      <div>
+        <H5>{{accountFirst?.ACCOUNTNAME}}</H5>
+        <!-- <H5>SORT CODE: 0000000</H5>
+        <H5>TAX ID:</H5> -->
+        <H5>CUSTOMER ID: <span>{{accountFirst?.CUSTOMERID}}</span></H5>
+        <H5>BVN NO:  <span>{{accountFirst?.BVN}}</span></H5>
+      </div>
+
+    </div>
+    <div class="subscriptions">
+      <div>
+          <H5>Internet Banking&nbsp;
+              <!-- <i class="fa fa-times"></i> -->
+              <!-- <i class="fa fa-check"></i> -->
+            </H5>
+            <H5 [innerHtml]="getAccOnAlatIcon()"></H5>
+        <H5 [innerHtml]="getTransAlertIcon()"></H5>
+      
+        <H5>Debit Cards&nbsp;&nbsp;&nbsp;
+          <!-- <i class="fa fa-times"></i> -->
+          <!-- <i class="fa fa-check"></i> -->
+        </H5>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card-box-shadow">
+    <div class="table-responsive-vertical shadow-z-1 form-table">
+      <table id="table" class="table table-hover table-mc-light-blue">
+        <thead>
+          <tr>
+            <th>Account #</th>
+            <th>Account Type</th>
+            <th>Currency</th>
+            <th class="align-text-right">Balance</th>
+            <th>Status</th>
+            <th  class="align-text-right">U/E</th>
+            <th  class="align-text-right">AMC</th>
+            <th class="align-text-right">OD Limit</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="!accountFirst">
+                <td data-title="" class="td-not-found" colspan="7">Account not found - Account is not correctly linked</td>              
+              </tr>
+
+          <tr *ngIf="accountFirst">
+            <!-- <td data-title="Account #" class="td-link" data-tool-tip="Click to view transaction history" [routerLink]="['/sc/accenquiry/accstatement', {id:1, accno:accountFirst?.ACCOUNTNUMBER, acctype:accountFirst?.ACCOUNTTYPEDESC}]">{{accountFirst?.ACCOUNTNUMBER}}</td> -->
+            <td data-title="Account #" class="td-link" data-tool-tip="Click to view account statement" (click)="gotoStatement(accountFirst)">{{accountFirst?.ACCOUNTNUMBER}}</td>
+            <td data-title="Account Type">{{accountFirst?.ACCOUNTTYPEDESC}}</td>
+            <td data-title="Currency">{{accountFirst?.CURRENCY}}</td>
+            <td data-title="Balance" class="align-text-right">{{accountFirst?.BALNCE| currency:' '}}</td>
+            <td data-title="Status">{{accountFirst?.STATUS}}</td>
+            <td data-title="U/E" class="align-text-right">{{0| currency:' '}}</td>
+            <td data-title="AMC" class="align-text-right">{{0| currency:' '}}</td>
+            <td data-title="OD Limit" class="align-text-right">{{accountFirst?.ODLIMIT| currency:' '}}</td>
+          </tr>
+         
+          <tr *ngIf="accountOthers?.length">
+            <td data-title="Others" colspan="5">Others</td>
+          </tr>
+
+          <tr *ngFor="let acco of accountOthers">
+            <td data-title="Account #" class="td-link" data-tool-tip="Click to view account statement" (click)="gotoStatement(acco)">{{acco?.ACCOUNTNUMBER}}</td>
+            <td data-title="Account Type">{{acco?.ACCOUNTTYPEDESC}}</td>
+            <td data-title="Currency">{{acco?.CURRENCY}}</td>
+            <td data-title="Balance" class="align-text-right">{{acco?.BALNCE| currency:' '}}</td>
+            <td data-title="Status">{{acco?.STATUS}}</td>
+           
+            <td data-title="U/E" class="align-text-right">{{0| currency:' '}}</td>
+            <td data-title="AMC" class="align-text-right">{{0| currency:' '}}</td>
+            <td data-title="OD Limit" class="align-text-right">{{acco?.ODLIMIT| currency:' '}}</td>
+          </tr>
+         
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+<!-- TERM DEPOSIT(TD) -->
+<div class="card-box-shadow">
+    <div class="tdTitle">
+        Term Deposit(s)
+      </div>
+
+    <div class="table-responsive-vertical shadow-z-1 form-table">
+      <table id="table" class="table table-hover table-mc-light-blue">
+        <thead>
+          <tr>
+            <th>TD #</th>
+            <th>Type</th>
+            <th class="align-text-right">Deposit Amt.</th>
+            <th>Tenor(Days)</th>
+            <th>Trans.Date</th>
+            <th>Maturity Date</th>
+            <th class="align-text-right">Int. Rate(%)</th>
+          </tr>
+        </thead>
+        <tbody>         
+          <tr *ngFor="let acco of accountsTD">
+            <td data-title="TD #">{{acco?.CUSTOMERACCOUNTNO}}</td>
+            <td data-title="Type">{{acco?.AccountDesc}}</td>
+            <td data-title="Deposit Amt." class="align-text-right">{{acco?.PRINCIPALAMOUNT | currency:' '}}</td>
+            <td data-title="Tenor(Days)">{{acco?.TENOR}}</td>
+           
+            <td data-title="Trans.Date">{{acco?.AcctOpnDate| date:'dd-MMM-yyyy'}}</td>
+            <td data-title="Maturity Date" >{{acco?.ACCT_CLS_DATE | date:'dd-MMM-yyyy'}}</td>
+            <td data-title="Int. Rate(%)" class="align-text-right">{{acco?.INTEREST_RATE| currency:' '}}</td>
+          </tr>         
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- LOANS -->
+<div class="card-box-shadow">
+    <div class="tdTitle">
+        Loan(s)
+      </div>
+
+    <div class="table-responsive-vertical shadow-z-1 form-table">
+      <table id="table" class="table table-hover table-mc-light-blue">
+        <thead>
+          <tr>
+            <th>Account #</th>
+            <th>Loan Type</th>
+            <th class="align-text-right">Loan Amount</th>
+            <th>Tenor(Days)</th>
+            <th>Trans.Date</th>
+            <th>Maturity Date</th>
+            <th class="align-text-right">Int. Rate(%)</th>
+          </tr>
+        </thead>
+        <tbody>         
+          <tr *ngFor="let acco of accountsLoan">
+            <td data-title="Account #">{{acco?.AccountNumber}}</td>
+            <td data-title="Loan Type">{{acco?.LoanDesc}}</td>
+            <td data-title="Loan Amount" class="align-text-right">{{acco?.LoanAmount | currency:' '}}</td>
+            <td data-title="Tenor(Days)">{{acco?.LoanTenor}}</td>
+           
+            <td data-title="Trans.Date">{{acco?.DateOfLoan}}</td>
+            <td data-title="Maturity Date">{{acco?.MaturityDate}}</td>
+            <td data-title="Int. Rate(%)" class="align-text-right">{{0| currency:' '}}</td>
+          </tr>         
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- <div class="td-link align-text-right" (click)="showPopupModel('pix_sig')">
+      Verify Picture & Signature
+    </div> -->
+
+  <div class="card-box-shadow acc-enq-accinfo">
+    <div>
+      <p>Account Officer</p>
+      <div *ngIf="accountFirstManager">
+        <H4>
+          <span>Name:&nbsp;</span>{{accountFirstManager?.EmployeeName}}</H4>
+        <H4>
+          <span>GSM No.:&nbsp;</span>{{accountFirstManager?.gsmno}}</H4>
+        <H4>
+          <span>e-Mail:&nbsp;</span>{{accountFirstManager?.Email}}</H4>
+        <!-- <H4>
+          <span>Extension:&nbsp;</span>
+        </H4> -->
+      </div>
+
+    </div>
+    <div class="subscriptions">
+      <div>
+        <p>Customer Contact</p>
+        <div>
+          <H5>Address:</H5>
+          <h4>{{accountFirst?.ADDRESS1}},&nbsp;{{accountFirst?.ADDRESS2}}</h4>
+          <H4>{{accountFirst?.CITY}},&nbsp;{{accountFirst?.STATE}}</H4>
+        </div>
+
+        <div class="margintop10">
+          <H4>GSM No.: <span>{{accountFirst?.MOBILE}}</span></H4>
+          <H4>e-Mail:  <span>{{accountFirst?.EMAIL}}</span></H4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="card-box-shadow  call-meme-addnote">
+    <div>
+      <p>View the last 5 Call Memos on this account</p>
+    </div>
+    <!-- <div class="addNote">
+      <p (click)="showPopupModel('note')">Add Note</p>
+    </div> -->
+  </div>
+
+
+
+  <div class="stat-note">
+    <div class="card-box-shadow acc-enq-stat-container">
+      <p>Statistics - A/c No: {{accountFirst?.ACCOUNTNUMBER}}</p>
+      <div class="acc-enq-stat">
+        <div>
+          <h4>Total Debits Today</h4>
+          <h4>Total Credits Today</h4>
+          <h4>Total Debits MTD</h4>
+          <h4>Total Credit MTD</h4>
+          <h4>Total Debits YTD</h4>
+          <h4>Total Credit YTD</h4>
+        </div>
+        <div class="acc-enq-stat-value">
+          <div>
+            <h4>{{accountFirstStats?.TOTALDEBITTODAY| currency:' '}}</h4>
+            <h4>{{accountFirstStats?.TOTALCREDITTTODAY| currency:' '}}</h4>
+            <h4>{{accountFirstStats?.TOTALDEBITMTD| currency:' '}}</h4>
+            <h4>{{accountFirstStats?.TOTALCREDITMTD| currency:' '}}</h4>
+            <h4>{{accountFirstStats?.TOTALDEBITYTD| currency:' '}}</h4>
+            <h4>{{accountFirstStats?.TOTALCREDITYTD| currency:' '}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-box-shadow general-note">
+      <!-- <p>General Notes</p> -->
+      <!-- <div>Note Content goes here...</div> -->
+    </div>
+  </div>
+
+
+</div>
+<!-- account detail section end here -->
+
+</div>
+
+
+<app-footer></app-footer>
+
+
+
+
+
+
+<!-- use this in the page where you want to slide other pages in -->
+<div>
+  <router-outlet></router-outlet>
+</div>
+
+
+
+
+<!-- model box section -->
+<div class="pop" *ngIf="showModel">
+    <div class="modal">
+      <div class="modal__inner">
+  
+        <!-- content start here -->
+    
+        <div class="pix-sig" *ngIf="selectedDialogVal==='pix_sig'">
+          <img src="assets/images/igyaban.jpg" alt="" />
+          <img src="assets/images/igyaban.jpg" alt="" />
+        </div>  
+  
+        <form class="no-margin" *ngIf="selectedDialogVal==='note'">
+          <div class="form-elements">
+            <label class="label" for="body">Account Enquiry Note</label>
+            <textarea type="text" rows="10" cols="30" placeholder="Add Note here..." [disabled]="isInprogress" #note> </textarea>
+          </div>
+          <div class="form-elements">
+            <button class="mybutton" type="submit" [disabled]="isInprogress" (click)="onAddNote(note.value)">Add</button>
+          </div>
+        </form>
+  
+        <!-- conent ends here -->
+  
+        <i class="fas fa-times" (click)="showModel=false;"></i>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- model box section -->
+  <!-- <div class="pop" *ngIf="showModel">
+    <div class="modal">
+      <div class="modal__inner"> -->
+  
+  <!-- content start here -->
+  
+  <!-- conent ends here -->
+  
+  <!--  <i class="fas fa-times" (click)="showModel=false;"></i>
+      </div>
+    </div>
+  </div> -->
+

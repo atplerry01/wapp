@@ -1,0 +1,30 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<app-report-template 
+
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg" 
+[showSearch]="true" 
+[showPagination]="true" 
+[showPerPage]="true" 
+[showExcelExport]="true" 
+[showDropdownMenu1]="true"
+[moduleName]="'Confidentiality'" 
+[dropdownMenu1List]="reportNameList"  
+[dropdownMenu1SelectedCode]="reportName" 
+[reportTitle]="reportTitle"
+[reportHeaders]="tableHeaders" 
+[reportData]="reportData" 
+(DropdownMenu1Triggered)="onReportNameChanged($event)"
+(exportExcelTriggered)="onExportToExcel()" 
+ [page]="page" 
+ [total_pages]="total_pages"  
+ [totalRecords] = "totalRecords" 
+ (pageChange)="onPageChange($event)" 
+ >
+</app-report-template>
+
+<app-footer></app-footer>

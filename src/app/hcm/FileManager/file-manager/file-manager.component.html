@@ -1,0 +1,97 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<app-report-template 
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg" 
+[showSearch]="true" 
+[showDropdownMenu1]="true"
+[dropdownMenu1List]="reportTypeList"  
+[dropdownMenu1SelectedCode]="selectedReportOption" 
+(DropdownMenu1Triggered)="onReportTypeChanged($event)"
+[searchText1_Placeholder]="'EmpNumb'"
+(searchTriggered)="onSearch($event)" 
+[isRowSelectable]="true"
+(rowSelectionTriggered)="onRowSelected($event)"
+[showPagination]="true" 
+[showPerPage]="true" 
+[showEdit]="false"
+(editRowTriggered)="onMenuEdit($event)" 
+[page]="page"
+[total_pages]="total_pages"  
+[totalRecords] = "totalRecords"
+(pageChange)="onPageChange($event)" 
+[dateFormat]="'DD-MMM-YYYY'" 
+[moduleName]="'HCM-FileArchive ArchivistStaffList'" 
+[reportTitle]="'File Archive Manager'"
+[reportHeaders]="reportHeaders" 
+[reportData]="reportData" 
+>
+</app-report-template>
+
+
+
+<div class="pop" *ngIf="showForm">
+  <div class="modal">
+
+    <div class="modal__inner" style="width: 75%">
+
+      <div *ngIf="currentModalTab === 'archiveDetail'">
+
+        <div class="form-header" style="font-size: 18px">{{formTitle}}</div>
+
+        <div>
+
+          <app-report-template [reportTitle]="'File Archive Details'" [isRowSelectable]="true"
+            [isInprogress]="isInprogress" [showNotFoundMsg]="showNotFoundMsg" [moduleName]="'RC-Loan Tele Collector'"
+            [reportHeaders]="archiveLogHeader" [reportData]="archiveLogs">
+          </app-report-template>
+        </div>
+        <div class="myform">
+          <div class="link-display"><span (click)="toggleBoxUpdate()">Update Box</span></div>
+          <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+            [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+          </app-form-template>
+        </div>
+      </div>
+
+      <div *ngIf="currentModalTab === 'archiveEdit'">
+        <div>
+          <app-report-template [reportTitle]="'FileArchive Details'" [isRowSelectable]="true"
+            [isInprogress]="isInprogress" [showNotFoundMsg]="showNotFoundMsg" [moduleName]="'RC-Loan Tele Collector'"
+            [reportHeaders]="archiveLogHeader" [reportData]="archiveLogs">
+          </app-report-template>
+        </div>
+
+        <div>
+
+          <h3 class="title">Edit {{updateTitle}}</h3>
+          <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+            [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+          </app-form-template>
+
+        </div>
+      </div>
+
+
+
+
+      <div *ngIf="currentModalTab === 'loanDetail'">
+
+        <div class="form-header" style="font-size: 18px">{{formTitle}}</div>
+
+        <div class="myform">
+          <div class="spinner" *ngIf="isInprogress"></div>
+
+          <app-form-template [model]="model" [fields]="fields" (submitTriggered)="submit($event)"
+            [showSubmit]="showModalSubmit" (closeTriggered)="showForm = false" [submitLabel]="submitLabel">
+          </app-form-template>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

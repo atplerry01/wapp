@@ -1,0 +1,64 @@
+import { Component, OnInit } from '@angular/core';
+import { DataService } from './../../../../shared/service/data.service';
+import { UtilityService } from './../../../../shared/service/utility.service';
+
+@Component({
+  selector: 'app-fimi-fileupload',
+  templateUrl: './fimi-fileupload.component.html',
+  styleUrls: ['./fimi-fileupload.component.scss']
+})
+
+export class FimiFileuploadComponent implements OnInit {
+
+  showNotFoundMsg = false;
+  isInprogress = false;
+  reportData = [] = [];
+
+  selectedFile: File = null;
+
+  constructor(
+    private dataService: DataService,
+    private utilityService: UtilityService
+  ) { }
+
+  ngOnInit() { }
+
+  onFileSelected(event) {
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile);
+  }
+
+  onUpload() {
+    console.log(this.selectedFile);
+
+    if (!this.selectedFile) {
+      this.utilityService.showInfoToast(
+        'Please select a valid file!',
+        'Valid File Format Required'
+      );
+      return;
+    }
+
+    const url = `http://localhost:5006/api/FimiUpload`;
+
+    const formData: FormData = new FormData();
+    formData.append('file', this.selectedFile, this.selectedFile.name);
+
+    // const fd = new FormData();
+    // fd.append('file', this.selectedFile, this.selectedFile.name);
+
+    console.log(formData);
+    this.dataService.PostExtFiles(this.selectedFile, url).subscribe(
+      res => {
+        console.log(res);
+        this.isInprogress = false;
+        this.utilityService.showSuccessToast(res.message, 'File Upload Success');
+      },
+      error => {
+        console.log(error);
+        this.utilityService.showErrorToast(error, 'Something went wrong!');
+      }
+    );
+  }
+
+}

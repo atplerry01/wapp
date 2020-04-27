@@ -1,0 +1,42 @@
+<app-header>
+</app-header>
+<app-menu></app-menu>
+
+
+<app-report-template 
+[isInprogress]="isInprogress" 
+[showNotFoundMsg]="showNotFoundMsg" 
+[showSearch]="true" 
+[showBranchList]="true"
+[showDropdownMenu1]="true"
+[dropdownMenu1List]="reportTypeList"  
+[dropdownMenu1SelectedCode]="reportType" 
+(DropdownMenu1Triggered)="onReportTypeChanged($event)"
+[showDropdownMenu2]="reportType === 'p'"
+[dropdownMenu2List]="dateTypeList"  
+[dropdownMenu2SelectedCode]="dateType" 
+(DropdownMenu2Triggered)="onDateTypeChanged($event)"
+[showDate]="true" 
+[isDateRange]="true" 
+[searchText1_Placeholder]="'Account number'"
+(searchTriggered)="onSearch($event)" 
+[showExcelExport]="true" 
+(exportExcelTriggered)="onExportToExcel()" 
+[showPagination]="true" 
+[showPerPage]="true" 
+[page]="page" 
+[total_pages]="total_pages"  
+[totalRecords] = "totalRecords"
+(pageChange)="onPageChange($event)" 
+[dateFormat]="'DD-MMM-YYYY'" 
+[moduleName]="'Fixed Deposit'" 
+[reportTitle]="reportTitle"
+[reportHeaders]="reportHeaders" 
+[reportData]="reportData" 
+>
+</app-report-template>
+
+
+
+
+<app-footer></app-footer>

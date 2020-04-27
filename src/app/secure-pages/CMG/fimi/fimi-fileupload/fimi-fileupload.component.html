@@ -1,0 +1,22 @@
+<app-header> </app-header>
+<app-menu></app-menu>
+
+<div class="formContainer card-box-shadow">
+  <div class="userData">
+
+    <div *ngIf="isLoading">Loading Page Content...</div>
+    <div *ngIf="!isLoading">
+      <h2 style="color:#000">{{appTitle}}</h2>
+      <strong style="color:#000">Allowed Extension: {{allowedExt}}</strong>
+      <div class="row">
+        <div>
+          <input type="file" (change)="onFileSelected($event)" />
+          <button type="button" (click)="onUpload()">Upload</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<app-footer></app-footer>
